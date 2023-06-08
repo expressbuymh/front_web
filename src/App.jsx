@@ -1,10 +1,9 @@
-import './App.css'
+import Index from './pages/Index'
 
-function App() {
-  
+function App () {
   return (
     <>
-     
+      <Index />
     </>
   )
 }
