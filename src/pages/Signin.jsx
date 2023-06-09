@@ -2,13 +2,13 @@ import FormLogin from '../components/users/FormLogin'
 
 export default function SignIn () {
   return (
-    <div className='flex justify-center items-center'>
-      <div className='sm:h-screen sm:w-full sm:flex sm:justify-center sm:items-center h-screen w-full flex justify-center items-center'>
-        <div className='sm:hidden h-screen w-1/2 bg-cover bg-center bg-no-repeat bg-bgsignup' />
-        <div className='sm:h-screen sm:w-full h-screen w-1/2 flex justify-center flex-col'>
-          <div className='flex items-center flex-col'>
+    <div className='flex justify-center items-center bg-slate-200'>
+      <div className='h-screen w-full flex justify-center items-center'>
+        <div className='h-screen w-1/2 bg-[url(https://i.pinimg.com/564x/8a/94/1a/8a941ae7141f5fb7166180942a5c8ac5.jpg)] bg-cover bg-no-repeat' />
+        <div className='w-1/2 '>
+          <div className='flex items-center flex-col mb-8'>
             <img src='' alt='' />
-            <h1 className='font-bold text-4xl m-3'>Welcome <span className='text-blue-800'>back</span>!</h1>
+            <h1 className='font-bold text-6xl m-3'>Welcome <span className='text-blue-800'>back</span>!</h1>
           </div>
           <FormLogin />
         </div>
