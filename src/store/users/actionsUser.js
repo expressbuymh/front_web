@@ -57,6 +57,22 @@ const signin = createAsyncThunk(
   }
 )
 
-const actions = { token, logout, signin }
+const signup = createAsyncThunk(
+  'signup',
+  async (data) => {
+    try {
+
+      const res = await axios.post('http://localhost:8000/auth/signup', data)
+    
+      return {
+        user: res.data.user
+      }
+    } catch (error) {
+
+    }
+  }
+)
+
+const actions = { token, logout, signin, signup }
 
 export default actions
