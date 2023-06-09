@@ -1,7 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit'
 import actions from './actionsUser'
 
-
 const { token, logout, signin, signup } = actions
 
 const inicialState = {
