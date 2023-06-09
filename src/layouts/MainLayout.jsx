@@ -1,11 +1,7 @@
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 
-export default function Main({ children }) {
-  /*   const location = useLocation()
-    if (['/Login', '/register'].includes(location.pathname)) {
-      return <Outlet />
-    } */
+export default function Main ({ children }) {
   return (
     <>
       <div className='w-screen h-screen flex flex-col'>
@@ -19,8 +15,6 @@ export default function Main({ children }) {
           <Footer />
         </footer>
       </div>
-
-
     </>
   )
 }
