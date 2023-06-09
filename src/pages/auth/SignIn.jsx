@@ -1,6 +1,6 @@
-import FormLogin from '../components/users/FormLogin'
+import FormLogin from '../../components/users/FormLogin'
 
-export default function SignIn () {
+export function SignIn () {
   return (
     <div className='flex justify-center items-center bg-slate-200'>
       <div className='h-screen w-full flex justify-center items-center'>
