@@ -1,3 +1,4 @@
+
 /* eslint-disable no-unused-expressions */
 import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from 'react-icons/bs'
 import { useState } from 'react'
@@ -41,6 +42,7 @@ function Carrousel () {
         <BsFillArrowRightCircleFill className='text-black/50 text-[40px] text-4xl cursor-pointer' onClick={add} />
       </div>
       <img src={images[counter]?.img} alt='MangasImg' className='w-[80%] h-[100%] | lg:m-auto | xl:ml-auto' />
+
     </div>
   )
 }
