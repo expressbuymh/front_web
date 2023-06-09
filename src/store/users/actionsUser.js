@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
-import apiUrl from '../../../api'
+import apiUrl from '../../utils/api'
 
 const token = createAsyncThunk(
   'token',
@@ -43,16 +43,16 @@ const signin = createAsyncThunk(
   'signin',
   async (data) => {
     try {
-      const res = await axios.post('http://localhost:8000/auth/signin', data)
-      localStorage.setItem('token', res.data.token)
-      localStorage.setItem('user', JSON.stringify(res.data.user))
-
+      const url = apiUrl + 'auth/signin'
+      const response = await axios.post(url, data)
+      console.log(response)
+      localStorage.setItem('token', JSON.stringify(response.data.token))
       return {
-        user: res.data.user,
-        token: res.data.token
+        user: response.data.user,
+        token: response.data.token
       }
     } catch (error) {
-
+      console.log(error)
     }
   }
 )
