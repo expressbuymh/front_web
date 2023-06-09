@@ -1,9 +1,9 @@
-import Index from './pages/Index'
+import { Routes } from './router/Routes'
 
 function App () {
   return (
     <>
-      <Index />
+      <Routes/>
     </>
   )
 }

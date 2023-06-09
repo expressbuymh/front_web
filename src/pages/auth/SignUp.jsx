@@ -1,6 +1,6 @@
-import FormSignup from '../components/users/FormSignup'
+import FormSignup from '../../components/users/FormSignup'
 
-export default function SignIn () {
+export function SignUp () {
   return (
     <div className='flex justify-center items-center bg-slate-200'>
       <div className='h-screen w-full flex justify-center items-center'>
@@ -17,4 +17,3 @@ export default function SignIn () {
 
   )
 }
-

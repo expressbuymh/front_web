@@ -1,7 +1,7 @@
 import { FaShoppingCart } from 'react-icons/fa'
 import Carrousel from '../components/Carrousel.jsx'
 
-export default function Index () {
+export function Home () {
 
   return (
 
