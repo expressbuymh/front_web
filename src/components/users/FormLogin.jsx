@@ -27,7 +27,7 @@ export default function FormLogin () {
     <form onSubmit={handleFormSubmit} className='flex flex-col items-center gap-4'>
       <div className='w-full justify-center items-center flex flex-col gap-4'>
         <input type='email' placeholder='Email address' ref={emailR} className='w-1/2 h-12 rounded-md px-3' />
-        <input type='password' placeholder='Password' ref={passwordR} className='w-1/2 h-12 rounded-md px-3' />
+        <input type='password' placeholder='Password' ref={passwordR} className='w-1/2 h-12 rounded-md px-3 form-input' />
         <div className='flex justify-between w-1/2'>
           <label>
             <input type='checkbox' className='w-4' />

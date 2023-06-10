@@ -1,4 +1,3 @@
-import { FaShoppingCart } from 'react-icons/fa'
 import Carrousel from '../components/Carrousel.jsx'
 
 export function Home () {
@@ -56,7 +55,7 @@ export function Home () {
                 <h1>Name</h1>
                 <h3>Price</h3>
               </div>
-              <button className='bg-stone-500 w-[100%] p-[3px] rounded'>Add <FaShoppingCart className='inline-block' /></button>
+              <button className='bg-stone-500 w-[100%] p-[3px] rounded'>Add </button>
             </div>
 
             <div className='col-span-1 border-2 border-stone-500 px-3 pt-4 pb-16'>
@@ -65,7 +64,7 @@ export function Home () {
                 <h1>Name</h1>
                 <h3>Price</h3>
               </div>
-              <button className='bg-stone-500 w-[100%] p-[3px] rounded'>Add <FaShoppingCart className='inline-block' /></button>
+              <button className='bg-stone-500 w-[100%] p-[3px] rounded'>Add </button>
             </div>
 
             <div className='col-span-1 border-2 border-stone-500 px-3 pt-4 pb-16'>
@@ -74,7 +73,7 @@ export function Home () {
                 <h1>Name</h1>
                 <h3>Price</h3>
               </div>
-              <button className='bg-stone-500 w-[100%] p-[3px] rounded'>Add <FaShoppingCart className='inline-block' /></button>
+              <button className='bg-stone-500 w-[100%] p-[3px] rounded'>Add </button>
             </div>
 
             <div className='col-span-1 border-2 border-stone-500 px-3 pt-4 pb-16'>
@@ -83,7 +82,7 @@ export function Home () {
                 <h1>Name</h1>
                 <h3>Price</h3>
               </div>
-              <button className='bg-stone-500 w-[100%] p-[3px] rounded'>Add <FaShoppingCart className='inline-block' /></button>
+              <button className='bg-stone-500 w-[100%] p-[3px] rounded'>Add </button>
             </div>
 
             <div className='col-span-1 border-2 border-stone-500 px-3 pt-4 pb-16'>
@@ -92,7 +91,7 @@ export function Home () {
                 <h1>Name</h1>
                 <h3>Price</h3>
               </div>
-              <button className='bg-stone-500 w-[100%] p-[3px] rounded'>Add <FaShoppingCart className='inline-block' /></button>
+              <button className='bg-stone-500 w-[100%] p-[3px] rounded'>Add </button>
             </div>
 
             <div className='col-span-1 border-2 border-stone-500 px-3 pt-4 pb-16'>
@@ -101,7 +100,7 @@ export function Home () {
                 <h1>Name</h1>
                 <h3>Price</h3>
               </div>
-              <button className='bg-stone-500 w-[100%] p-[3px] rounded'>Add <FaShoppingCart className='inline-block' /></button>
+              <button className='bg-stone-500 w-[100%] p-[3px] rounded'>Add </button>
             </div>
 
           </div>

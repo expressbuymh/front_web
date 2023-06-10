@@ -8,7 +8,7 @@ export function SignIn () {
         <div className='w-1/2 '>
           <div className='flex items-center flex-col mb-8'>
             <img src='' alt='' />
-            <h1 className='font-bold text-6xl m-3'>Welcome <span className='text-blue-800'>back</span>!</h1>
+            <h1 className='font-bold text-6xl m-3 font-inter text-success-500 bg-bg-dark'>Welcome <span className='text-blue-800'>back</span>!</h1>
           </div>
           <FormLogin />
         </div>

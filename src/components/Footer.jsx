@@ -1,7 +1,3 @@
-import { BsFacebook, BsTwitter, BsInstagram } from 'react-icons/bs'
-
-
-
 function Footer () {
   return (
     <div className='w-[100%] h-[30vh] bg-black'>
@@ -10,9 +6,6 @@ function Footer () {
         <div className='w-[30%] md:flex md:flex-col md:items-end'>
           <h2 className='text-white text-[11px] text-center mb-2 md:mr-4'>SOCIAL MEDIA</h2>
           <div className='flex flex-row justify-around gap-3 md:justify-center md:gap-7'>
-            <BsFacebook className='text-white/70' />
-            <BsTwitter className='text-white/70' />
-            <BsInstagram className='text-white/70' />
           </div>
         </div>
       </div>
