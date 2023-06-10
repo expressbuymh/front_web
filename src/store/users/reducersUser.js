@@ -6,7 +6,11 @@ const { token, logout, signin, signup } = actions
 
 
 const inicialState = {
-  user: null,
+  name: null,
+  last_name: null,
+  email: null,
+  role: null,
+  photo: null,
   token: null
 }
 
