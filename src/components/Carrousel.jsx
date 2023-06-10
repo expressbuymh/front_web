@@ -1,6 +1,5 @@
 
 /* eslint-disable no-unused-expressions */
-import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from 'react-icons/bs'
 import { useState } from 'react'
 
 function Carrousel () {
@@ -38,8 +37,6 @@ function Carrousel () {
   return (
     <div className='relative mobile:hidden  lg:block col-span-2  h-[100%] w-[100%] select-none'>
       <div className='absolute flex justify-between top-[50%] lg:w-[100%] lg:px-10 2xl:px-auto'>
-        <BsFillArrowLeftCircleFill className='text-black/50 text-[40px] text-4xl cursor-pointer' onClick={rest} />
-        <BsFillArrowRightCircleFill className='text-black/50 text-[40px] text-4xl cursor-pointer' onClick={add} />
       </div>
       <img src={images[counter]?.img} alt='MangasImg' className='w-[80%] h-[100%] | lg:m-auto | xl:ml-auto' />
 
