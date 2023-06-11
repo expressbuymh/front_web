@@ -25,9 +25,13 @@ import { Addresses } from '../pages/user/Adresses'
 import { CreateAddress } from '../pages/user/addresses/CreateAddress'
 import { ModifyAddress } from '../pages/user/addresses/ModifyAddress'
 import { DeleteAddress } from '../pages/user/addresses/DeleteAddress'
+import { useSelector } from 'react-redux'
+import { NotAuthenticatedRoute } from './NotAuthenticatedRoute'
+import { Index } from '../pages/admin/Index'
 
 
 export function Routes() {
+  const { role } = useSelector(store => store.user)
   return (
     <Router>
       <Route
@@ -40,7 +44,10 @@ export function Routes() {
       <Route
         path="/auth/login"
         element={
-          <SignIn />
+          <NotAuthenticatedRoute>
+            <SignIn />
+          </NotAuthenticatedRoute>
+
         } />
       <Route
         path="/auth/register"
@@ -124,34 +131,21 @@ export function Routes() {
           </MainLayout>
         }
       >
-        <Route path='create' element={<CreateAddress/>}/>
-        <Route path='modify/:address_id' element={<ModifyAddress/>}/>
-        <Route path='delete/:address_id' element={<DeleteAddress/>}/>
+        <Route path='create' element={<CreateAddress />} />
+        <Route path='modify/:address_id' element={<ModifyAddress />} />
+        <Route path='delete/:address_id' element={<DeleteAddress />} />
       </Route>
+      {
+        role >= 2 &&
+        <Route
+          path='/admin'
+          element={
+            <MainLayout>
+              <Index/>
+            </MainLayout>
+          }
+        />
+      }
     </Router>
   )
 }
-
-
-/* const routes = createBrowserRouter([
-  {
-    path: '/',
-    element: <Main />,
-    children: [
-      { path: '/', element: <Home/> },
-      { path: '/Login', element: <SignIn /> },
-      { path: '/Register', element: <SignUp /> }
-      
-      { path: '/chapter-form/:id_manga', element: <ChaptersForm /> },
-      { path: '/mangas-form', element: <Mangaform /> },
-      { path: '/chapters/:id/:page', element: <PageChapters /> },
-      { path: '/mangas/:page', element: <MangasCreate /> },
-      { path: '/mangas/manga/:id', element: <Manga /> },
-      { path: '/mymangas', element: <FavMangas /> },
-      { path: '/admin', element: <AdminPanel /> },
-      { path: '/new-author', element: <NewAuthor /> },
-      { path: '/new-company', element: <NewCompany /> }
-    ]
-  }
-])
- */
