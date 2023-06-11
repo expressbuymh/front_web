@@ -2,10 +2,12 @@ import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { Navigate } from "react-router-dom"
 import { Loading } from "../pages/Loading";
+import { LS } from "../utils/localStorageUtils";
 
 export function NotAuthenticatedRoute({ children }) {
-    let tokenStorage = JSON.parse(localStorage.getItem("token"));
-    let { token, user } = useSelector((store) => store.user)
+    let tokenStorage = LS.get('token');
+    let {token}= useSelector(store => store.user.data)
+    console.log(token)
     const [loading, setLoading] = useState(tokenStorage ? true : false)
     useEffect(() => {
         if(token){
@@ -15,7 +17,7 @@ export function NotAuthenticatedRoute({ children }) {
     if (loading) {
         return <Loading/>
     }
-    if (token && !tokenStorage) {
+    if (token && tokenStorage) {
         return <Navigate to={"/"} replace={true} />
     }
     return children

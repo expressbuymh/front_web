@@ -1,9 +1,9 @@
 import { useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import actions from '../../store/users/actionsUser'
+/* import actions from '../../store/users/actionsUser' */
 
-const { signup } = actions
+/* const { signup } = actions */
 
 export default function Signup () {
   const dispatch = useDispatch()
@@ -25,7 +25,7 @@ export default function Signup () {
       photo: photo.current.value
     }
 
-    dispatch(signup(data))
+    /* dispatch(signup(data)) */
     // falta ubicar las alertas con toast
     navigate('/Login')
   }

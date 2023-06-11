@@ -1,7 +1,14 @@
+import { useDispatch } from 'react-redux'
 import Carrousel from '../components/Carrousel.jsx'
+import actions from '../store/user/auth/authActions.js'
 
-export function Home () {
+const { sign_out } = actions
 
+export function Home() {
+  const dispatch = useDispatch()
+  function handleClick() {
+    dispatch(sign_out())
+  }
   return (
 
     <>
@@ -16,7 +23,7 @@ export function Home () {
         </div>
 
         <div className='mobile:hidden | xl:w-[100%] xl:h-[20vh] xl:flex xl:flex-row xl:justify-around xl:my-10'>
-
+          <button onClick={handleClick}>Sign out</button>
           <div className='border-2 border-stone-500 h-[100%] w-[25%] flex'>
             <img className='h-[100%] w-[50%]' src='https://firebasestorage.googleapis.com/v0/b/expressbuy-finalchallenge.appspot.com/o/productsImages%2FCARROT%20FRESCAMPO%201000%20gr.webp?alt=media&token=2cb391b7-f662-4109-93b6-5ab89a86900e' alt='' />
 

@@ -1,6 +1,18 @@
+import { useDispatch, useSelector } from 'react-redux'
 import FormLogin from '../../components/users/FormLogin'
+import authActions from '../../store/user/auth/authActions'
 
-export function SignIn () {
+const { sign_in } = authActions
+export function SignIn() {
+  let dispatch = useDispatch()
+  function handleClick() {
+    dispatch(sign_in({
+      data: {
+        email: "matiastejerina94@gmail.com",
+        password: "hola1234"
+      }
+    }))
+  }
   return (
     <div className='flex justify-center items-center bg-slate-200'>
       <div className='h-screen w-full flex justify-center items-center'>
@@ -11,6 +23,7 @@ export function SignIn () {
             <h1 className='font-bold text-6xl m-3 font-inter text-success-500 bg-bg-dark'>Welcome <span className='text-blue-800'>back</span>!</h1>
           </div>
           <FormLogin />
+          <button onClick={handleClick}>Sign in</button>
         </div>
       </div>
     </div>
