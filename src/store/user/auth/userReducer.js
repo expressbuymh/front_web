@@ -195,6 +195,10 @@ const reducer = createReducer(
       (state, action) => {
         const newState = {
           ...state,
+          error: {
+            ...state.error,
+            sign_up: null,
+          },
           success: {
             ...state.success,
             sign_up: true
@@ -213,6 +217,10 @@ const reducer = createReducer(
       (state, action) => {
         const newState = {
           ...state,
+          error: {
+            ...state.error,
+            sign_up: null,
+          },
           loading: {
             ...state.loading,
             sign_up: true

@@ -68,7 +68,7 @@ const sign_up = createAsyncThunk('sign_up', async ({ data }, { rejectWithValue }
       success: response.success
     }
   } catch (error) {
-    let newError = parseError({ error })
+    let { newError }= parseError({ error })
     return rejectWithValue({
       error: newError
     })

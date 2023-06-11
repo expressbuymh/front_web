@@ -2,16 +2,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { InputText } from "../../components/forms/InputText";
 import { parseDataFromForm } from "../../utils/handleData";
 import { ActionButton } from "../../components/forms/ActionButton";
-import { useEffect, useState } from "react";
 import authActions from '../../store/user/auth/authActions'
 import { ErrorMessage } from "../../components/forms/ErrorMessage";
-import { toast } from "react-hot-toast";
+
 
 const {sign_in} = authActions
 
 export function SignIn() {
   const dispatch = useDispatch()
-  const {loading, error, success} = useSelector(store => store.user.data)
+  const {loading, error} = useSelector(store => store.user.data)
   function handleSubmit(e) {
     let {data} = parseDataFromForm(e);
     console.log(data)
