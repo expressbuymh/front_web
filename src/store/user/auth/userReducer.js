@@ -5,16 +5,34 @@ import actions from './authActions'
 const { sign_in, sign_in_token, sign_out, sign_up } = actions
 
 
-const inicialState = {
-  loading: null,
+const initialState = {
+  loading: {
+    sign_in: null,
+    sign_up: null,
+    verify: null,
+    sign_out: null,
+    sign_in_token: null
+  },
   user: null,
   token: null,
-  error: null,
-  success: null,
+  error: {
+    sign_in: null,
+    sign_up: null,
+    verify: null,
+    sign_out: null,
+    sign_in_token: null
+  },
+  success: {
+    sign_in: null,
+    sign_up: null,
+    verify: null,
+    sign_out: null,
+    sign_in_token: null
+  }
 }
 
 const reducer = createReducer(
-  inicialState,
+  initialState,
   (builder) => builder
     .addCase(
       sign_in.fulfilled,
@@ -23,8 +41,14 @@ const reducer = createReducer(
           ...state,
           user: action.payload.user,
           token: action.payload.token,
-          success: true,
-          loading: false,
+          success: {
+            ...state.success,
+            sign_in: true
+          },
+          loading: {
+            ...state.loading,
+            sign_in: false
+          }
         }
         return newState
       }
@@ -34,7 +58,10 @@ const reducer = createReducer(
       (state, action) => {
         const newState = {
           ...state,
-          loading: true
+          loading: {
+            ...state.loading,
+            sign_in: true
+          }
         }
         return newState
       }
@@ -44,9 +71,18 @@ const reducer = createReducer(
       (state, action) => {
         const newState = {
           ...state,
-          success: false,
-          loading: false,
-          error: action.payload.error
+          success: {
+            ...state.success,
+            sign_in: false
+          },
+          loading: {
+            ...state.loading,
+            sign_in: false
+          },
+          error: {
+            ...state.error,
+            sign_in: action.payload.error
+          }
         }
         return newState
       }
@@ -58,8 +94,14 @@ const reducer = createReducer(
           ...state,
           user: action.payload.user,
           token: action.payload.token,
-          success: true,
-          loading: false,
+          success: {
+            ...state.success,
+            sign_in_token: true
+          },
+          loading: {
+            ...state.loading,
+            sign_in_token: false
+          }
         }
         return newState
       }
@@ -69,7 +111,10 @@ const reducer = createReducer(
       (state, action) => {
         const newState = {
           ...state,
-          loading: true
+          loading: {
+            ...state.loading,
+            sign_in_token: true
+          }
         }
         return newState
       }
@@ -80,8 +125,14 @@ const reducer = createReducer(
       (state, action) => {
         const newState = {
           ...state,
-          success: false,
-          loading: false,
+          success: {
+            ...state.success,
+            sign_in_token: false
+          },
+          loading: {
+            ...state.loading,
+            sign_in_token: false
+          }
         }
         return newState
       }
@@ -92,11 +143,17 @@ const reducer = createReducer(
       (state, action) => {
         const newState = {
           ...state,
-          loading: null,
+          loading: {
+            ...state.loading,
+            sign_out: false
+          },
           user: null,
           token: null,
           error: null,
-          success: null,
+          success: {
+            ...state.success,
+            sign_out: true
+          }
         }
         return newState
       }
@@ -107,7 +164,10 @@ const reducer = createReducer(
       (state, action) => {
         const newState = {
           ...state,
-          loading: true,
+          loading: {
+            ...state.loading,
+            sign_out: true
+          },
         }
         return newState
       }
@@ -117,7 +177,14 @@ const reducer = createReducer(
       (state, action) => {
         const newState = {
           ...state,
-          loading: false,
+          loading: {
+            ...state.loading,
+            sign_out: false
+          },
+          success: {
+            ...state.success,
+            sign_out: false
+          },
         }
         return newState
       }
@@ -128,8 +195,14 @@ const reducer = createReducer(
       (state, action) => {
         const newState = {
           ...state,
-          succes: true,
-          loading: false,
+          success: {
+            ...state.success,
+            sign_up: true
+          },
+          loading: {
+            ...state.loading,
+            sign_up: false
+          },
         }
         return newState
       }
@@ -140,7 +213,10 @@ const reducer = createReducer(
       (state, action) => {
         const newState = {
           ...state,
-          loading: false,
+          loading: {
+            ...state.loading,
+            sign_up: true
+          }
         }
         return newState
       }
@@ -150,8 +226,18 @@ const reducer = createReducer(
       (state, action) => {
         const newState = {
           ...state,
-          error: action.payload.error,
-          loading: false,
+          error: {
+            ...state.error,
+            sign_up: action.payload.error,
+          },
+          sucess: {
+            ...state.success,
+            sign_up: false
+          },
+          loading: {
+            ...state.loading,
+            sign_up: false
+          }
         }
         return newState
       }

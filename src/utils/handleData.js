@@ -17,7 +17,7 @@ export function parseError({ error }) {
             unauthorized: "You don't have authorization for this action"
         }
     }
-    return { newError }
+    return {newError} 
 }
 
 export function parseDataFromForm(e) {
