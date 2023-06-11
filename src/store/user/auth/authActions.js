@@ -1,4 +1,4 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { LS } from "../../../utils/localStorageUtils";
 import { api, endpoints, headers } from "../../../utils/api";
 import { parseError } from "../../../utils/handleData";
@@ -10,6 +10,7 @@ const sign_in = createAsyncThunk("sign_in", async ({ data }, { rejectWithValue }
   try {
     let response = await api.post(endpoints.sign_in, data);
     LS.add('token', response.data.token)
+    console.log(response.data.cart)
     return {
       success: response.data.sucess,
       user: response.data.user,
@@ -19,7 +20,7 @@ const sign_in = createAsyncThunk("sign_in", async ({ data }, { rejectWithValue }
 
   } catch (error) {
     console.log(error)
-    let newError = parseError({ error })
+    let { newError } = parseError({ error })
     return rejectWithValue({
       error: newError
     })
@@ -60,7 +61,7 @@ const sign_out = createAsyncThunk("sign_out", async (data = null, { rejectWithVa
     })
   }
 })
-const sign_up = createAsyncThunk('sign_up', async({data}, {rejectWithValue}) => {
+const sign_up = createAsyncThunk('sign_up', async ({ data }, { rejectWithValue }) => {
   try {
     let response = await api.post(endpoints.sign_up, data)
     return {
@@ -72,8 +73,6 @@ const sign_up = createAsyncThunk('sign_up', async({data}, {rejectWithValue}) => 
       error: newError
     })
   }
-  
-
 })
 const actions = { sign_in, sign_in_token, sign_out, sign_up }
 export default actions
