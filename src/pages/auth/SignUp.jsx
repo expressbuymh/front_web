@@ -1,19 +1,45 @@
-import FormSignup from '../../components/users/FormSignup'
+import { InputText } from "../../components/forms/InputText";
+import { ActionButton } from "../../components/forms/ActionButton";
+import authActions from "../../store/user/auth/authActions";
+import { useDispatch, useSelector } from "react-redux";
+import { parseDataFromForm } from "../../utils/handleData";
+import { toast } from "react-hot-toast";
+import { useEffect } from "react";
+import { ErrorMessage } from "../../components/forms/ErrorMessage";
+
+const {sign_up} = authActions
 
 export function SignUp () {
+  const dispatch = useDispatch()
+  const {loading,error,success} = useSelector(store => store.user.data)
+  
+  useEffect(()=>{
+    if(success?.sign_up){
+      toast.success("User successfully created")
+    }
+  },[success])
+
+  function handleSubmit(e){
+    const {data} = parseDataFromForm(e)
+    dispatch(sign_up({data}))
+  }
   return (
-    <div className='flex justify-center items-center bg-slate-200'>
-      <div className='h-screen w-full flex justify-center items-center'>
-        <div className='w-1/2 '>
-          <div className='flex items-center flex-col mb-8'>
-            <img src='' alt='' />
-            <h1 className='font-bold text-6xl m-3'>Register <span className='text-blue-800'>now</span>!</h1>
-          </div>
-          <FormSignup />
-        </div>
-        <div className='h-screen w-1/2 bg-[url(https://i.pinimg.com/564x/aa/56/56/aa565619b8660c19157c36af2b8b13d5.jpg)] bg-cover bg-no-repeat' />
+    <div className='w-screen h-screen flex flex-col justify-center items-center bg-bg-light'>
+      <div className="w-11/12 lg:w-1/2 flex flex-col justify-center items-center gap-4">
+      <img src="../src/assets/logo.svg" className="w-12 h-12" alt="" />
+      <h1 className="text-paragraph-primary font-bold text-2xl">Create your account</h1>
+      <form onSubmit={handleSubmit} className="w-full flex flex-col justify-center items-center gap-3">
+        <InputText name="name" label="Name" error={error?.sign_up?.name} type="text"/>
+        <InputText name="last_name" label="Last Name" error={error?.sign_up?.last_name} type="text"/>
+        <InputText name="photo" label="Photo" error={error?.sign_up?.photo} type="text"/>
+        <InputText name="email" label="Email" error={error?.sign_up?.email} type="email"/>
+        <InputText name="password" label="Password" error={error?.sign_up?.password} type="password"/>
+        {error?.sign_up?.userExist && <ErrorMessage error={error?.sign_up?.userExist}/>}
+        <ActionButton loading={loading?.sign_up}>
+          Signup
+        </ActionButton>
+      </form>
       </div>
     </div>
-
   )
 }
