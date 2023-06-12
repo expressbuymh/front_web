@@ -30,13 +30,13 @@ module.exports = {
         'bg-dark': '#D1D5DB'
       },
       fontFamily: {
-        'inter': ['Inter', 'sans-serif'],
+        inter: ['Inter', 'sans-serif']
       }
-    },
+    }
   },
   plugins: [
-    require("@tailwindcss/forms")({
-      strategy: 'class', // only generate classes
-    }),
+    require('@tailwindcss/forms')({
+      strategy: 'class' // only generate classes
+    })
   ]
 }
