@@ -66,7 +66,7 @@ export function Slideover({ open, setOpen }) {
                                                 <div className='flex flex-col justify-start items-center flex-1 h-full divide-y-2 gap-4'>
                                                     <button className='w-full bg-error-100 text-error-500 py-2 px-4 rounded-lg hover:bg-red-500 hover:text-white'>Empty cart</button>
                                                     <div className='w-full h-full flex flex-col justify-start items-center gap-4 pt-4'>
-                                                        {products?.map((product) => <ProductCard product={product}/>)}
+                                                        {products?.map((product) => <ProductCard product={product} key={product._id}/>)}
 
                                                     </div>
                                                     <div className='w-full text-start p-4'>

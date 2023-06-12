@@ -8,6 +8,7 @@ export function ProductsCards(){
 
   const productsArray = [
     {
+      _id: "1",
     name:"Coca cola - 1,5lts",
     photo:cocaCola,
     description:"Bebida gasificada sin azúcar",
@@ -19,6 +20,7 @@ export function ProductsCards(){
     category_id:"Gaseosa",
   },
   {
+    _id: "2",
     name:"Pepsi - 1,5lts",
     photo:pepsi,
     description:"Bebida gasificada con azúcar",
@@ -30,6 +32,7 @@ export function ProductsCards(){
     category_id:"Gaseosa"
   },
   {
+    _id: "3",
     name:"Speed 500ml",
     photo:speed,
     description:"Bebida energizante",
@@ -41,6 +44,7 @@ export function ProductsCards(){
     category_id:"Energizante"
   },
   {
+    _id: "4",
     name:"Speed 500ml",
     photo:speed,
     description:"Bebida energizante",
@@ -55,7 +59,7 @@ export function ProductsCards(){
   return (
     <div className=" h-fit flex flex-row gap-4">
       {productsArray.map((items) => (
-        <div key={items} className="w-full bg-white flex flex-col justify-center items-center px-2 border rounded-lg ">
+        <div key={items._id} className="w-full bg-white flex flex-col justify-center items-center px-2 border rounded-lg ">
           <img src={items.photo} alt={items.name} className="h-4/5 w-1/2 object-contain"/> 
           <div className="w-full flex flex-col mb-6">
             <p className="w-2/3 font-medium">{items.name}</p>

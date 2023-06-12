@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar'
 /* import { Navbar } from '../components/navbar-test/Navbar' */
 
 
-export default function Main ({ children }) {
+export default function Main({ children }) {
   return (
     <>
       <div className='w-full h-screen flex flex-col'>
@@ -13,9 +13,7 @@ export default function Main ({ children }) {
         <main className='grow'>
           {children}
         </main>
-        <footer>
-          <Footer />
-        </footer>
+        <Footer />
       </div>
     </>
   )
