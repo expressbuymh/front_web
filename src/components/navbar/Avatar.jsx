@@ -12,7 +12,7 @@ export function Avatar() {
     }
     return (
         <Popover className="relative">
-            <Popover.Button className='w-8 h-8 rounded-full border overflow-hidden'>
+            <Popover.Button className='w-6 h-6 rounded-full border overflow-hidden'>
                 <img src={user?.photo} className='w-full h-full object-cover' alt="" />
             </Popover.Button>
 

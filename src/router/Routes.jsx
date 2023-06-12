@@ -141,7 +141,8 @@ export function Routes() {
         element={
           <AdminLayout/>
         }>
-        <Route index element={<ProductsAdmin />} />
+        <Route index element={<p>Bienvenida</p>}></Route>
+        <Route path='products' element={<ProductsAdmin />} />
         <Route path='orders' element={<ProductsAdmin />} />
       </Route>
     </Router>
