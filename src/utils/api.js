@@ -13,7 +13,14 @@ export const endpoints = {
   sign_up: "/auth/signup",
   sign_out: "/auth/signout",
   sign_in_token: "auth/token",
-  get_menu: "menu"
+  get_menu: "menu",
+  get_products: "products"
+}
+
+const adminEnpoints =  {
+  get_products: "",
+  get_orders: "",
+  
 }
 
 export function headers(token){
