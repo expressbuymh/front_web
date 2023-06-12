@@ -8,10 +8,8 @@ export function ProductsAdmin () {
     api.get(endpoints.get_products).then(res => setProducts(res.data.products)).catch(err => console.log(err))
   }, [])
   return (
-    <div className='w-full h-full flex '>
-      <div className='grow w-11/12 flex flex-col  justify-center gap-4 py-4'>
+      <div className='w-full flex flex-col  justify-center gap-4 p-4 mb-24'>
         {products?.map((item) => <AdminProducts items={item} />)}
       </div>
-    </div>
   )
 }
