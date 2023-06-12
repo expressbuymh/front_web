@@ -27,11 +27,12 @@ import { ModifyAddress } from '../pages/user/addresses/ModifyAddress'
 import { DeleteAddress } from '../pages/user/addresses/DeleteAddress'
 import { useSelector } from 'react-redux'
 import { NotAuthenticatedRoute } from './NotAuthenticatedRoute'
-import { Index } from '../pages/admin/Index'
+import { ProductsAdmin } from '../pages/admin/ProductsAdmin'
+import { AdminLayout } from '../layouts/AdminLayout'
 
 
 export function Routes() {
-  const { role } = useSelector(store => store.user)
+  const { user } = useSelector(store => store.user.data)
   return (
     <Router>
       <Route
@@ -135,17 +136,14 @@ export function Routes() {
         <Route path='modify/:address_id' element={<ModifyAddress />} />
         <Route path='delete/:address_id' element={<DeleteAddress />} />
       </Route>
-      {
-        role >= 2 &&
-        <Route
-          path='/admin'
-          element={
-            <MainLayout>
-              <Index/>
-            </MainLayout>
-          }
-        />
-      }
+      <Route
+        path='/admin'
+        element={
+          <AdminLayout/>
+        }>
+        <Route index element={<ProductsAdmin />} />
+        <Route path='orders' element={<ProductsAdmin />} />
+      </Route>
     </Router>
   )
 }
