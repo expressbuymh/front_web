@@ -1,18 +1,39 @@
-import { CartIcon } from '../assets/icons/Icons'
+import { useSelector } from 'react-redux'
+import { SearchBar } from './navbar/SearchBar'
+import { PopoverButton } from './navbar/SubcategoriesMenu'
+import { Avatar } from './navbar/Avatar'
+import { AuthLinks } from './navbar/AuthLinks'
+import { Cart } from './navbar/Cart'
+
 function Navbar() {
+  const { user, token } = useSelector(store => store.user.data)
+  const { categories, subcategories } = useSelector(store => store.menu)
   return (
     <>
-      <div className='bg-neutral-400 w-[100%] h-[6vh] inline-grid grid-cols-3 items-center px-4 | lg:h-[8vh] | 2xl:h-[9vh] 2xl:px-28'>
-        <div className='h-[100%] flex items-center pl-6 gap-4 2xl:gap-12'>
-          <img className='w-10 h-8 2xl:w-24 2xl:h-16' src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Cora_logo.svg/120px-Cora_logo.svg.png' alt='' />
+      <nav className='w-full h-[70px] flex flex-row items-center justify-between border-b text-paragraph-primary'>
+        <h1 className='font-black text-primary-600 text-3xl'>ExBy</h1>
+        <div className='flex flex-row justify-center items-center grow'>
+          <SearchBar />
         </div>
-        <div className=''>
-          <input type='text' name='search' id='search' className='w-[90%] text-center rounded focus:outline-none px-2 mobile:hidden | lg:block lg:w-[100%] lg:h-8 2xl:h-14 2xl:text-2xl' placeholder='Search' />
-        </div>
-        <div className='flex flex-row justify-center gap-5 | lg:justify-end lg:pr-6 lg:gap-7'>
-          <CartIcon />
-        </div>
-      </div>
+        {!token && <AuthLinks />}
+        {token &&
+          <div className='flex flew-row  divide-x-2 items-center'>
+            <div className='grow px-4'>
+              <Avatar />
+            </div>
+            <div className='grow px-4 relative'>
+              <Cart />
+            </div>
+
+          </div>
+        }
+
+
+      </nav>
+      <nav className='w-full flex flex-row justify-start items-center h-[50px] gap-4 my-2'>
+        {categories?.filter((item) => item.active).map((item) => <PopoverButton key={item._id} category={item} subcategories={subcategories?.filter(itemsub => itemsub.category_id === item._id && itemsub.active)} />)}
+
+      </nav>
     </>
   )
 }

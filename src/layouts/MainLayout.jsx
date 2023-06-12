@@ -6,8 +6,8 @@ import Navbar from '../components/Navbar'
 export default function Main ({ children }) {
   return (
     <>
-      <div className='h-screen w-full flex flex-col'>
-        <header>
+      <div className='w-full h-screen flex flex-col'>
+        <header className='px-12 shadow-sm'>
           <Navbar />
         </header>
         <main className='grow'>

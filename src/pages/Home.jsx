@@ -3,7 +3,6 @@ import {CardSales} from "../components/home/CardSales/CardSales"
 import hero from "../components/products/ImagenesProducts/diadelpadre.webp"
 
 export function Home(items,card) {
-
   return (
 
     <>
@@ -17,8 +16,6 @@ export function Home(items,card) {
         <ProductsCards key={items}/>
       </div>
     </div>
-
-
     </>
 
   )
