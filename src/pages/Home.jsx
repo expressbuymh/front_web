@@ -1,32 +1,21 @@
-import { useDispatch, useSelector } from 'react-redux'
-import Carrousel from '../components/Carrousel.jsx'
-import actions from '../store/user/auth/authActions.js'
-import { toast } from 'react-hot-toast'
-import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { ProductsCards } from "../components/products/ProductsCards"
+import {CardSales} from "../components/home/CardSales/CardSales"
+import hero from "../components/products/ImagenesProducts/diadelpadre.webp"
 
-const { sign_out, clean_up } = actions
-
-export function Home() {
-  const dispatch = useDispatch()
-  const { success } = useSelector(store => store.user.data)
-  function handleClick() {
-    dispatch(sign_out())
-  }
+export function Home(items,card) {
   return (
 
     <>
-      <div className='h-auto w-[100%] bg-bg-light pt-2 pb-16'>
-        <div className='w-[100%] h-10 p-1 flex justify-center | lg:hidden'>
-          <input type='text' className='text-center h-[100%] w-[100%] rounded | md:w-[90%]' placeholder='Search' />
-        </div>
-        <Link to="/products">
-          Products
-        </Link>
-        <button onClick={handleClick}>Sign out</button>
-
-
+    <div className="bg-bg-light flex h-full flex-col justify-center items-center">
+      <div className="w-11/12 h-96 min-h-[220px] flex items-center justify-center my-6 ">
+       <img src={hero} alt="" className="w-full h-full" />
       </div>
+      <CardSales key={card}/>
+      <div className="w-11/12 my-6">
+        <p className="font-bold text-paragraph-primary my-4 text-2xl">Productos destacados</p>
+        <ProductsCards key={items}/>
+      </div>
+    </div>
     </>
 
   )

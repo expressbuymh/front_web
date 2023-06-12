@@ -43,3 +43,9 @@ export function parsePagesArray(numberOfPages) {
     }
     return [1];
 }
+export function parseDiscountPercentage(percentage) {
+    return ((1 - percentage) * 100).toFixed()  
+}
+export function parseDiscountPrice(price,percentage){
+    return price * percentage
+}
