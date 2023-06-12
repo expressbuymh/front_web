@@ -30,7 +30,7 @@ function Navbar() {
 
 
       </nav>
-      <nav className='w-full flex flex-row justify-start items-center h-[50px] gap-4 my-2'>
+      <nav className='w-full flex flex-row justify-start items-center gap-4 my-2 flex-wrap'>
         {categories?.filter((item) => item.active).map((item) => <PopoverButton key={item._id} category={item} subcategories={subcategories?.filter(itemsub => itemsub.category_id === item._id && itemsub.active)} />)}
 
       </nav>

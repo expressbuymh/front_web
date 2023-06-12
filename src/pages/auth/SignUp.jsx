@@ -6,16 +6,21 @@ import { parseDataFromForm } from "../../utils/handleData";
 import { toast } from "react-hot-toast";
 import { useEffect } from "react";
 import { ErrorMessage } from "../../components/forms/ErrorMessage";
+import { useNavigate } from "react-router-dom";
 
 const {sign_up} = authActions
 
 export function SignUp () {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const {loading,error,success} = useSelector(store => store.user.data)
   
   useEffect(()=>{
     if(success?.sign_up){
       toast.success("User successfully created")
+      setTimeout(() => {
+        navigate("/auth/login")
+      }, 1000);
     }
   },[success])
 
