@@ -1,6 +1,6 @@
 import axios from "axios"
 
-let apiUrl = 'http://localhost:8000/'
+export let apiUrl = 'http://localhost:8000/'
 
 if (process.env.NODE_ENV === 'production') {
   apiUrl = import.meta.env.VITE_API
@@ -18,7 +18,7 @@ export const endpoints = {
 }
 
 export const adminEnpoints =  {
-  get_products: "",
+  get_products_admin: "products",
   get_orders: "/orders",
   
 }
