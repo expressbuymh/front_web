@@ -30,7 +30,8 @@ import { NotAuthenticatedRoute } from './NotAuthenticatedRoute'
 import { ProductsAdmin } from '../pages/admin/ProductsAdmin'
 import { AdminLayout } from '../layouts/AdminLayout'
 import { OrdersAdmin } from '../pages/admin/OrdersAdmin'
-
+//chatboot//
+import ChatBot from '../chat/chat'
 
 export function Routes() {
   const { user } = useSelector(store => store.user.data)
@@ -41,6 +42,7 @@ export function Routes() {
         element={
           <MainLayout>
             <Home />
+            <ChatBot/>
           </MainLayout >
         } />
       <Route
@@ -140,7 +142,7 @@ export function Routes() {
       <Route
         path='/admin'
         element={
-          <AdminLayout/>
+          <AdminLayout />
         }>
         <Route index element={<p>Bienvenida</p>}></Route>
         <Route path='products' element={<ProductsAdmin />} />
