@@ -30,6 +30,7 @@ import { NotAuthenticatedRoute } from './NotAuthenticatedRoute'
 import { ProductsAdmin } from '../pages/admin/ProductsAdmin'
 import { AdminLayout } from '../layouts/AdminLayout'
 import { OrdersAdmin } from '../pages/admin/OrdersAdmin'
+import { OrderDetailsAdmin } from '../pages/admin/OrderDetailsAdmin'
 
 
 export function Routes() {
@@ -145,6 +146,7 @@ export function Routes() {
         <Route index element={<p>Bienvenida</p>}></Route>
         <Route path='products' element={<ProductsAdmin />} />
         <Route path='orders' element={<OrdersAdmin />} />
+        <Route path='orders/:order_id' element={<OrderDetailsAdmin />} />
       </Route>
     </Router>
   )
