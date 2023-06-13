@@ -32,6 +32,8 @@ import { AdminLayout } from '../layouts/AdminLayout'
 import { OrdersAdmin } from '../pages/admin/OrdersAdmin'
 //chatboot//
 import ChatBot from '../chat/chat'
+import { OrderDetailsAdmin } from '../pages/admin/OrderDetailsAdmin'
+
 
 export function Routes() {
   const { user } = useSelector(store => store.user.data)
@@ -147,6 +149,7 @@ export function Routes() {
         <Route index element={<p>Bienvenida</p>}></Route>
         <Route path='products' element={<ProductsAdmin />} />
         <Route path='orders' element={<OrdersAdmin />} />
+        <Route path='orders/:order_id' element={<OrderDetailsAdmin />} />
       </Route>
     </Router>
   )
