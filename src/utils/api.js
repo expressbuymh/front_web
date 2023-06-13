@@ -17,9 +17,9 @@ export const endpoints = {
   get_products: "products"
 }
 
-const adminEnpoints =  {
+export const adminEnpoints =  {
   get_products: "",
-  get_orders: "",
+  get_orders: "/orders",
   
 }
 
