@@ -1,13 +1,39 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { api, endpoints, headers } from '../../utils/api'
+import { useNavigate, useParams } from 'react-router-dom'
+import {LS} from "../../utils/localStorageUtils"
 
-export function AdminProducts ({ items }) {
-  const [active, setActive] = useState(items.active)
+export function AdminProducts ({ staticItems }) {
+  const navigate = useNavigate()
+  const [items,setItems] = useState(staticItems)
+  const { id } = useParams()
+  /* const [active, setActive] = useState(items.active) */
 
-  function toggleClick () {
-    setActive(!active)
+  useEffect(() => {
+    api.get(endpoints.get_products)
+    .then(res => {
+      return res.data.products
+    })
+      .catch(err => console.log(err))
+  }, [id])
+
+  function setActive(){
+    setItems((state)=>{
+      return {
+        ...state,active:!state.active
+      }
+    })
   }
+
+  function editId() {
+    navigate(`/admin/products/${items._id}`,{state: items})
+  }
+  function handleActive(){
+    api.put(`/products/active/${items._id}`,null,headers(LS.get("token"))).then(res=> setActive()).catch(error => console.log(error))
+  }
+
   return (
-    <div key={items} className='w-full h-[120px] bg-white flex flex-row items-center border rounded-lg'>
+    <div className='w-full h-[120px] bg-white flex flex-row items-center border rounded-lg'>
       <img src={items.photo} alt={items.name} className='h-[100px] w-1/2 object-contain' />
       <div className='w-full flex flex-col grow'>
         <p className='w-full font-medium text-sm'>{items.name}</p>
@@ -15,13 +41,15 @@ export function AdminProducts ({ items }) {
         <p className='w-fit font-semibold'>${items.price}</p>
       </div>
       <div className='flex flex-col w-3/12 mx-2 gap-2'>
-        <button className='bg-primary-500 h-10 rounded-lg font-medium text-lg text-white'>Edit</button>
-        <div onClick={toggleClick} className='flex w-20 bg-gray-600 rounded-full'>
-          {active
-            ? <div className='h-10 w-10 ml-10  bg-green-600 rounded-full' />
-            : <div className='h-10 w-10 bg-primary-700 rounded-full' />}
+        <button onClick={editId} className='bg-primary-500 h-8 w-20 rounded-lg font-medium text-lg text-white'>Edit</button>
+        <div onClick={handleActive} className='flex w-20 bg-bg-dark rounded-full'>
+          {items.active
+            ? <div className='h-8 w-8 ml-12  bg-green-600 rounded-full' ></div>
+            : <div className='h-8 w-8 bg-primary-700 rounded-full' ></div>}
         </div>
       </div>
     </div>
+ 
   )
 }
+

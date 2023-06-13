@@ -1,12 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit'
 import menuActions from './menuActions'
 
-
-
-
-
 const {get_menu} = menuActions
-
 
 const inicialState = {
   departments: null,
