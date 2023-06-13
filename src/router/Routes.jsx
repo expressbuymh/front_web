@@ -31,6 +31,8 @@ import { ProductsAdmin } from '../pages/admin/ProductsAdmin'
 import { AdminLayout } from '../layouts/AdminLayout'
 import { OrdersAdmin } from '../pages/admin/OrdersAdmin'
 import { EditsProduct } from '../pages/admin/EditProducts'
+import { OrderDetailsAdmin } from '../pages/admin/OrderDetailsAdmin'
+
 
 
 export function Routes() {
@@ -148,6 +150,7 @@ export function Routes() {
         <Route path='products' element={<ProductsAdmin />} />
         <Route path='products/:id' element={<EditsProduct />} />
         <Route path='orders' element={<OrdersAdmin />} />
+        <Route path='orders/:order_id' element={<OrderDetailsAdmin />} />
       </Route>
     </Router>
   )
