@@ -49,7 +49,6 @@ export function OrderDetailsAdmin() {
     const [order, setOrder] = useState()
     const navigate = useNavigate()
     useEffect(() => {
-        console.log(location.state)
         setOrder(location.state)
     }, [location])
 
@@ -88,7 +87,7 @@ export function OrderDetailsAdmin() {
                         <div>Quantity</div>
                         <div >Price</div>
                     </div>
-                    {order?.products?.map((item) => <ProductDetail product={item} />)}
+                    {order?.products?.map((item) => <ProductDetail product={item} key={item}  />)}
                     <div className="w-full flex flex-row justify-end mt-4">
                         Subtotal: $ {order?.total_price}
                     </div>
