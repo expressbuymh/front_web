@@ -49,3 +49,6 @@ export function parseDiscountPercentage(percentage) {
 export function parseDiscountPrice(price,percentage){
     return price * percentage
 }
+export function parsePrice(price){
+    return Intl.NumberFormat("de-DE").format(price)
+}
