@@ -39,7 +39,7 @@ export function SignUp() {
           <InputText name="photo" label="Photo" error={error?.sign_up?.photo} type="text" />
           <InputText name="email" label="Email" error={error?.sign_up?.email} type="email" />
           <InputText name="password" label="Password" error={error?.sign_up?.password} type="password" />
-          {error?.sign_up?.userExist && <ErrorMessage error={error?.sign_up?.userExist} />}
+          {error?.sign_up?.exist && <ErrorMessage error={error?.sign_up?.exist} />}
           <ActionButton loading={loading?.sign_up}>
             <span className="text-white font-medium">Sign up</span>
           </ActionButton>
