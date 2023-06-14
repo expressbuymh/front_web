@@ -20,8 +20,8 @@ export function ProductsCards(){
             <p className="w-full text-paragraph-secondary text-sm mb-5">{items.category_id.name}</p>          
               {items.discount_id?.active == true ?
               <div className="flex w-24 flex-wrap items-center">
-                <p className="w-fit font-medium p-1 ">${parseDiscountPrice(items.price,items.discount_id.percetage)}</p>
-                <p className="bg-green-600 rounded-md flex items-center p-1 text-white">{parseDiscountPercentage(items.discount_id.percetage)}%</p>
+                <p className="w-fit font-medium p-1 ">${parseDiscountPrice(items.price,items.discount_id.percentage)}</p>
+                <p className="bg-green-600 rounded-md flex items-center p-1 text-white">{parseDiscountPercentage(items.discount_id.percentage)}%</p>
                 <p className="w-fit font-light p-1 mb-2 line-through">${items.price}</p>
               </div>
               : <div>

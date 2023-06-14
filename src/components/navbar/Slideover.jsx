@@ -2,10 +2,17 @@ import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ProductCard } from './ProductCard'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import cartActions from '../../store/user/cart/cartActions'
+
+const {clear_cart} = cartActions
 
 export function Slideover({ open, setOpen }) {
-    const { products } = useSelector(store => store.user.cart)
+    const { products, cart_id } = useSelector(store => store.user.cart)
+    const dispatch = useDispatch()
+    function handleClear(){
+        dispatch(clear_cart({cart_id}))
+    }
     return (
         <Transition.Root show={open} as={Fragment}>
             <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -64,7 +71,7 @@ export function Slideover({ open, setOpen }) {
                                         <div className="relative mt-6 flex-1 px-4 sm:px-6">
                                             {products.length > 0 ?
                                                 <div className='flex flex-col justify-start items-center flex-1 h-full divide-y-2 gap-4'>
-                                                    <button className='w-full bg-error-100 text-error-500 py-2 px-4 rounded-lg hover:bg-red-500 hover:text-white'>Empty cart</button>
+                                                    <button onClick={handleClear} className='w-full bg-error-100 text-error-500 py-2 px-4 rounded-lg hover:bg-red-500 hover:text-white'>Empty cart</button>
                                                     <div className='w-full h-full flex flex-col justify-start items-center gap-4 pt-4'>
                                                         {products?.map((product) => <ProductCard product={product} key={product._id}/>)}
 

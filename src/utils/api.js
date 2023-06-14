@@ -24,6 +24,12 @@ export const adminEnpoints =  {
   
 }
 
+export const cart_endpoint = {
+  set_product: "carts/addproducts/",
+  remove_product: "carts/deleteproduct/",
+  clear_cart: "carts/clear/"
+}
+
 export function headers(token){
   return { headers: { 'Authorization': `Bearer ${token}` } }
 }
