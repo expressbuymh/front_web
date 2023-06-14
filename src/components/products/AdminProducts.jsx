@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { api, apiUrl, endpoints, headers } from '../../utils/api'
 import { useNavigate, useParams } from 'react-router-dom'
 import {LS} from "../../utils/localStorageUtils"
+import { parsePrice } from '../../utils/handleData'
+import { ChevronLeftIcon, UserCircleIcon } from '@heroicons/react/20/solid'
 
 export function AdminProducts ({ staticItems }) {
   const navigate = useNavigate()
@@ -40,7 +42,7 @@ export function AdminProducts ({ staticItems }) {
       <div className='w-full flex flex-col grow'>
         <p className='w-full font-medium text-sm'>{items.name}</p>
         <p className='w-full text-paragraph-secondary text-sm'>{items?.subcategory_id?.name}</p>
-        <p className='w-fit font-semibold'>${items.price}</p>
+        <p className='w-fit font-semibold'>${parsePrice(items.price)}</p>
       </div>
       <div className='flex flex-col w-3/12 mx-2 gap-2'>
         <button onClick={editId} className='bg-primary-700 h-8 w-20 rounded-lg font-medium text-lg text-white'>Edit</button>

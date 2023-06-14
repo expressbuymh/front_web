@@ -2,13 +2,13 @@
 import { useEffect, useState } from 'react'
 import {  api, apiUrl, headers } from '../../utils/api'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { InputText } from '../../components/forms/InputText'
 import { useSelector } from 'react-redux'
 import { parseDataFromForm } from '../../utils/handleData'
 import { LS } from '../../utils/localStorageUtils'
 import { toast } from 'react-hot-toast'
-
+import { ChevronLeftIcon } from '@heroicons/react/20/solid'
 
 
 export function EditsProduct() {
@@ -16,7 +16,7 @@ export function EditsProduct() {
   const { id } = useParams()
   const [product, setProduct] = useState(null)
   const {categories,subcategories} = useSelector(store=>store.menu)
-  
+  const navigate = useNavigate()
 
   useEffect(() => {
     axios
@@ -40,11 +40,17 @@ export function EditsProduct() {
   }
  
   return (
-    <div className='w-full flex h-screen bg-white '>
-      <div className='mt-7 flex justify-around w-full'>
+    
+    <div className='w-full h-screen bg-white '>
+      
+      <button onClick={() => navigate(-1)} className="bg-primary-700 text-white p-1 rounded-lg flex flex-row w-[120px] items-center"> <ChevronLeftIcon className="w-6 h-6 stroke-white fill-white" />Go back</button>
+      
+      
+      <div className='mt-7 flex flex-col lg:flex lg:flex-row lg:justify-around w-full'>
+        
         {product && (
-      <><img src={product.photo} alt='' className='h-1/2 object-contain' /><div className='bg-white w-1/2 '>
-          <form onSubmit={handleSubmit} className='flex flex-col gap-8'>
+      <><img src={product.photo} alt='' className='lg:h-1/2 h-2/5 object-contain' /><div className='bg-white lg:w-1/2 w-full lg:flex lg:justify-start lg:items-start flex justify-center items-center'>
+          <form onSubmit={handleSubmit} className='flex flex-col lg:gap-8 w-11/12'>
             <InputText name="name" defaultValue={product.name ? product.name : ""} label="Rename" error='' type='' />
             <InputText name="description" defaultValue={product.description ? product.description : ""} label='Change description' error='' type='text' />
             <InputText name="price" defaultValue={product.price ? product.price : ""} label="Price" error='' type='text' placeholder='Change price' />

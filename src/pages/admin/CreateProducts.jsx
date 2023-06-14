@@ -27,7 +27,7 @@ export function CreateProducts(){
   return (
     <>
     <div className="w-9/12 h-fit">
-      <form onSubmit={handleSubmit} className="m-8 flex flex-col gap-4">
+      <form onSubmit={handleSubmit} className="m-8 flex flex-col gap-2">
         <InputText name="name" label="Name" error="" type="text" placeholder="Insert name product"/>
         <InputText  name="photo" label="Photo" error="" type="text" placeholder="Insert photo here"/>
         <InputText name="description" label="Description" error="" type="text" placeholder="Insert description"/>

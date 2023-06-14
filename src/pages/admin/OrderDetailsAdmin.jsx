@@ -4,6 +4,7 @@ import { ProductDetail } from "../../components/admin/orders/ProductDetails"
 import { ChevronLeftIcon, UserCircleIcon } from '@heroicons/react/20/solid'
 import { api, headers } from "../../utils/api"
 import { LS } from "../../utils/localStorageUtils"
+import { parsePrice } from "../../utils/handleData"
 
 const status = {
     pending: "bg-gray-200 text-gray-500",
@@ -44,6 +45,7 @@ const statusButton = {
         endpoint: "/orders/notification/"
     }
 }
+
 export function OrderDetailsAdmin() {
     const location = useLocation()
     const [order, setOrder] = useState()
@@ -79,8 +81,8 @@ export function OrderDetailsAdmin() {
                 <button onClick={handleClick} className={`${statusButton[order?.status]?.style} w-[150px] max-h-[40px] rounded-lg p-2`}>{statusButton[order?.status]?.text}</button>
             </div>
 
-            <div className="w-full h-full flex flex-row justify-center items-start gap-2 ">
-                <div className="grow border rounded-lg p-4">
+            <div className="w-full h-full lg:flex lg:flex-row flex flex-col justify-center items-start gap-2 ">
+                <div className="grow order-2 w-full lg:order-1 border rounded-lg p-4">
                     <div className="mb-8 text-lg">Products details</div>
                     <div className="grid grid-cols-5">
                         <div className="col-span-3 ">Name</div>
@@ -89,17 +91,17 @@ export function OrderDetailsAdmin() {
                     </div>
                     {order?.products?.map((item) => <ProductDetail product={item} key={item}  />)}
                     <div className="w-full flex flex-row justify-end mt-4">
-                        Subtotal: $ {order?.total_price}
+                        Subtotal: $ {parsePrice(order?.total_price)}
                     </div>
                     <div className="w-full flex flex-row justify-end mt-4 font-bold">
-                        Total: $ {order?.total_price}
+                        Total: $ {parsePrice(order?.total_price)}
                     </div>
                 </div>
-                <div className="bg-bg-light w-1/3 p-4 rounded-lg border">
+                <div className="bg-bg-light lg:w-1/3 w-full order-1 p-4 rounded-lg border">
                     <div className="w-full border-b pb-4">
                         <p className="text-paragraph-primary font-medium">Amount</p>
                         <div className="flex flex-row justify-between w-full">
-                            <p>${order?.total_price}</p>
+                            <p>${parsePrice(order?.total_price)}</p>
                             <div className={`text-sm rounded-full p-1 max-w-[100px] text-center ${status[order?.status]}`}>
                                 {order?.status}
                             </div>

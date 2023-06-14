@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { api, headers } from "../../../utils/api"
 import { LS } from "../../../utils/localStorageUtils"
+import { parsePrice } from "../../../utils/handleData"
+
 
 const status = {
     pending: "bg-gray-200 text-gray-500",
@@ -64,9 +66,9 @@ export function OrderCard({ staticOrder }) {
         navigate(`/admin/orders/${order._id}`, { state:  order  });
     }
     return (
-        <div className="grid grid-cols-7 items-center border-b py-2 text-paragraph-primary text-sm">
+        <div className="lg:grid lg:grid-cols-7 md:grid md:grid-cols-7 grid grid-cols-4 items-center border-b py-2 text-paragraph-primary text-sm ">
             <div className="p-2 ">
-                <div className={`text-sm rounded-full max-w-[90px] text-center ${status[order?.status]}`}>
+                <div className={`text-sm rounded-full text-center ${status[order?.status]}`}>
                     {order?.status}
                 </div>
 
@@ -74,22 +76,22 @@ export function OrderCard({ staticOrder }) {
             <div className="text-center">
                 #{order?.n_order}
             </div>
-            <div className="capitalize text-center">
+            <div className="capitalize text-center hidden md:block lg:block">
                 {order?.user_id?.name}{order?.user_id?.last_name}
             </div>
-            <div className="capitalize text-center">
+            <div className="capitalize text-center hidden md:block lg:block">
                 {order?.products?.reduce(
                     (accumulator, currentValue) => accumulator + currentValue.quantity,
                     0
                 )}
             </div>
-            <div >
-                ${order?.total_price}
+            <div className="text-center hidden md:block lg:block">
+                ${parsePrice(order?.total_price)}
             </div>
-            <button onClick={handleNavigate}  className="text-primary-500 underline">
+            <button onClick={handleNavigate}  className="text-primary-500 underline text-center">
                 Details
             </button>
-            <button onClick={() => handleClick(order?._id)} className={`${statusButton[order?.status]?.style} max-w-[100px] rounded-lg p-2`}>
+            <button onClick={() => handleClick(order?._id)} className={`${statusButton[order?.status]?.style}  rounded-lg p-2 text-center`}>
                 {statusButton[order?.status]?.text}
             </button>
 
