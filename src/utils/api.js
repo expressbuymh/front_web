@@ -14,13 +14,20 @@ export const endpoints = {
   sign_out: "/auth/signout",
   sign_in_token: "auth/token",
   get_menu: "menu",
-  get_products: "products"
+  get_products: "products",
+  get_discounts: "products/discounts"
 }
 
 export const adminEnpoints =  {
   get_products_admin: "products",
   get_orders: "/orders",
   
+}
+
+export const cart_endpoint = {
+  set_product: "carts/addproducts/",
+  remove_product: "carts/deleteproduct/",
+  clear_cart: "carts/clear/"
 }
 
 export function headers(token){
