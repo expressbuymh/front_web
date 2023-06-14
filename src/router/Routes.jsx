@@ -34,6 +34,7 @@ import { EditsProduct } from '../pages/admin/EditProducts'
 //chatboot//
 import ChatBot from '../chat/chat'
 import { OrderDetailsAdmin } from '../pages/admin/OrderDetailsAdmin'
+import { CreateProducts } from '../pages/admin/CreateProducts'
 
 
 
@@ -148,10 +149,11 @@ export function Routes() {
         element={
           <AdminLayout />
         }>
-         
+       
         <Route index element={<p>Bienvenida</p>}></Route>
         <Route path='products' element={<ProductsAdmin />} />
         <Route path='products/:id' element={<EditsProduct />} />
+        <Route path='products/create' element={<  CreateProducts />} />
         <Route path='orders' element={<OrdersAdmin />} />
         <Route path='orders/:order_id' element={<OrderDetailsAdmin />} />
       </Route>

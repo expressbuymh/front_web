@@ -4,32 +4,25 @@ import {  api, apiUrl, headers } from '../../utils/api'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import { InputText } from '../../components/forms/InputText'
-import { useDispatch, useSelector } from 'react-redux'
-import actions from '../../store/menu/menuActions'
+import { useSelector } from 'react-redux'
 import { parseDataFromForm } from '../../utils/handleData'
 import { LS } from '../../utils/localStorageUtils'
 import { toast } from 'react-hot-toast'
 
-const {get_menu} = actions
+
 
 export function EditsProduct() {
 
-  const dispatch = useDispatch()
   const { id } = useParams()
   const [product, setProduct] = useState(null)
   const {categories,subcategories} = useSelector(store=>store.menu)
   
-  
-  useEffect(()=>{
-    dispatch(get_menu(null))
-  },[])
-  
+
   useEffect(() => {
     axios
       .get(apiUrl + `products/${id}`)
       .then(res => {
         const productData = res.data.product
-        
         setProduct(productData)
       })
       .catch(err => console.log(err))
@@ -44,7 +37,6 @@ export function EditsProduct() {
         console.log(error)
         toast.error("Error")
       }
-
   }
  
   return (
@@ -66,7 +58,7 @@ export function EditsProduct() {
               <option key={subcategory._id} value={subcategory._id}>{subcategory.name}</option>
             ))}
             </select>
-            <button className='bg-primary-500 h-12 rounded-lg text-white'>Save</button>
+            <button className='bg-primary-700 h-12 rounded-lg text-white'>Save</button>
           </form>
         </div></>
         )}
