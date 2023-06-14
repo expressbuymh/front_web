@@ -6,7 +6,7 @@ const {get_menu} = menuActions
 const inicialState = {
   departments: null,
   categories: null,
-  subcategories: false,
+  subcategories: null,
   loading: false,
   error: null
 }

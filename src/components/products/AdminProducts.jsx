@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { api, endpoints, headers } from '../../utils/api'
+import { api, apiUrl, endpoints, headers } from '../../utils/api'
 import { useNavigate, useParams } from 'react-router-dom'
 import {LS} from "../../utils/localStorageUtils"
 
@@ -7,7 +7,7 @@ export function AdminProducts ({ staticItems }) {
   const navigate = useNavigate()
   const [items,setItems] = useState(staticItems)
   const { id } = useParams()
-  /* const [active, setActive] = useState(items.active) */
+
 
   useEffect(() => {
     api.get(endpoints.get_products)
@@ -28,11 +28,13 @@ export function AdminProducts ({ staticItems }) {
   function editId() {
     navigate(`/admin/products/${items._id}`,{state: items})
   }
+ 
   function handleActive(){
     api.put(`/products/active/${items._id}`,null,headers(LS.get("token"))).then(res=> setActive()).catch(error => console.log(error))
   }
 
   return (
+
     <div className='w-full h-[120px] bg-white flex flex-row items-center border rounded-lg'>
       <img src={items.photo} alt={items.name} className='h-[100px] w-1/2 object-contain' />
       <div className='w-full flex flex-col grow'>
@@ -41,11 +43,11 @@ export function AdminProducts ({ staticItems }) {
         <p className='w-fit font-semibold'>${items.price}</p>
       </div>
       <div className='flex flex-col w-3/12 mx-2 gap-2'>
-        <button onClick={editId} className='bg-primary-500 h-8 w-20 rounded-lg font-medium text-lg text-white'>Edit</button>
-        <div onClick={handleActive} className='flex w-20 bg-bg-dark rounded-full'>
+        <button onClick={editId} className='bg-primary-700 h-8 w-20 rounded-lg font-medium text-lg text-white'>Edit</button>
+        <div onClick={handleActive} className='flex w-20 bg-bg-medium rounded-full'>
           {items.active
-            ? <div className='h-8 w-8 ml-12  bg-green-600 rounded-full' ></div>
-            : <div className='h-8 w-8 bg-primary-700 rounded-full' ></div>}
+            ? <div className='h-8 w-8 ml-12  bg-green-500 rounded-full' ></div>
+            : <div className='h-8 w-8 bg-gray-500  rounded-full' ></div>}
         </div>
       </div>
     </div>
