@@ -1,69 +1,23 @@
+import { useEffect,useState } from "react"
 import { parseDiscountPercentage, parseDiscountPrice } from "../../utils/handleData"
-import cocaCola from "../products/ImagenesProducts/coca.jpg"
-import pepsi from "../products/ImagenesProducts/pepsi.png"
-import speed from "../products/ImagenesProducts/speed.png"
+import { api, endpoints, headers } from "../../utils/api"
+import { LS } from "../../utils/localStorageUtils"
 
 
 export function ProductsCards(){
+  const [productsArray, setProductsArray] = useState()
 
-  const productsArray = [
-    {
-      _id: "1",
-    name:"Coca cola - 1,5lts",
-    photo:cocaCola,
-    description:"Bebida gasificada sin azúcar",
-    price:500,
-    discount_id:{
-      active:false,
-      percetage:0.8,
-    },
-    category_id:"Gaseosa",
-  },
-  {
-    _id: "2",
-    name:"Pepsi - 1,5lts",
-    photo:pepsi,
-    description:"Bebida gasificada con azúcar",
-    price:550,
-    discount_id:{
-      active:true,
-      percetage:0.3,
-    },
-    category_id:"Gaseosa"
-  },
-  {
-    _id: "3",
-    name:"Speed 500ml",
-    photo:speed,
-    description:"Bebida energizante",
-    price:400,
-    discount_id:{
-      active:true,
-      percetage:0.4,
-    },
-    category_id:"Energizante"
-  },
-  {
-    _id: "4",
-    name:"Speed 500ml",
-    photo:speed,
-    description:"Bebida energizante",
-    price:400,
-    discount_id:{
-      active:true,
-      percetage:0.8,
-    },
-    category_id:"Energizante"
-  },
-  ]
+  useEffect(() => {
+    api.get(endpoints.get_discounts, headers(LS.get("token"))).then(res => setProductsArray(res.data.products)).catch(err => console.log(err))
+  },[])
   return (
     <div className=" h-fit flex flex-row gap-4">
-      {productsArray.map((items) => (
+      {productsArray?.map((items) => (
         <div key={items._id} className="w-full bg-white flex flex-col justify-center items-center px-2 border rounded-lg ">
           <img src={items.photo} alt={items.name} className="h-4/5 w-1/2 object-contain"/> 
           <div className="w-full flex flex-col mb-6">
             <p className="w-2/3 font-medium">{items.name}</p>
-            <p className="w-full text-paragraph-secondary text-sm mb-5">{items.category_id}</p>          
+            <p className="w-full text-paragraph-secondary text-sm mb-5">{items.category_id.name}</p>          
               {items.discount_id?.active == true ?
               <div className="flex w-24 flex-wrap items-center">
                 <p className="w-fit font-medium p-1 ">${parseDiscountPrice(items.price,items.discount_id.percetage)}</p>
