@@ -1,8 +1,18 @@
 import { ProductsCards } from "../components/products/ProductsCards"
 import {CardSales} from "../components/home/CardSales/CardSales"
 import hero from "../components/products/ImagenesProducts/diadelpadre.webp"
+import { useEffect } from "react"
+import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 
 export function Home(items,card) {
+  const navigate = useNavigate()
+  const {user} = useSelector(store => store.user.data)
+  useEffect(() => {
+    if(user?.role > 0 ){
+      navigate("/admin/")
+    }
+  },[user])
   return (
 
     <>
