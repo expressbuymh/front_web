@@ -1,18 +1,22 @@
 import { Fragment } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/24/outline'
+import { Dialog, Transition, Disclosure } from '@headlessui/react'
+import { XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
 import { ProductCard } from './ProductCard'
 import { useDispatch, useSelector } from 'react-redux'
 import cartActions from '../../store/user/cart/cartActions'
 import { parsePrice } from '../../utils/handleData'
+import { useNavigate } from 'react-router-dom'
 
-const {clear_cart} = cartActions
+const { clear_cart } = cartActions
 
-export function Slideover({ open, setOpen }) {
-    const { products, cart_id } = useSelector(store => store.user.cart)
-    const dispatch = useDispatch()
-    function handleClear(){
-        dispatch(clear_cart({cart_id}))
+export function SlideoverMenu({ open, setOpen }) {
+    const { categories, subcategories } = useSelector(store => store.menu)
+    const navigate = useNavigate()
+    function handleClick(category_id, subcategory_id) {
+        navigate({
+            pathname: '/products',
+            search: `?category_id=${category_id}&subcategory_id=${subcategory_id}`
+        })
     }
     return (
         <Transition.Root show={open} as={Fragment}>
@@ -31,15 +35,15 @@ export function Slideover({ open, setOpen }) {
 
                 <div className="fixed inset-0 overflow-hidden">
                     <div className="absolute inset-0 overflow-hidden">
-                        <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+                        <div className="pointer-events-none fixed inset-y-0 left-0 flex max-w-full pr-10">
                             <Transition.Child
                                 as={Fragment}
                                 enter="transform transition ease-in-out duration-500 sm:duration-700"
-                                enterFrom="translate-x-full"
+                                enterFrom="-translate-x-full"
                                 enterTo="translate-x-0"
                                 leave="transform transition ease-in-out duration-500 sm:duration-700"
                                 leaveFrom="translate-x-0"
-                                leaveTo="translate-x-full"
+                                leaveTo="-translate-x-full"
                             >
                                 <Dialog.Panel className="pointer-events-auto relative w-screen max-w-md">
                                     <Transition.Child
@@ -51,7 +55,7 @@ export function Slideover({ open, setOpen }) {
                                         leaveFrom="opacity-100"
                                         leaveTo="opacity-0"
                                     >
-                                        <div className="absolute left-0 top-0 -ml-8 flex pr-2 pt-4 sm:-ml-10 sm:pr-4">
+                                        <div className="absolute right-0 top-0 -ml-8 flex pr-2 pt-4 sm:-ml-10 sm:pl-4">
                                             <button
                                                 type="button"
                                                 className="rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
@@ -65,33 +69,27 @@ export function Slideover({ open, setOpen }) {
                                     <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
                                         <div className="px-4 sm:px-6">
                                             <Dialog.Title className="text-base font-semibold leading-6 text-gray-900">
-                                                Your cart
+                                                <h1 className='font-black text-primary-600 text-3xl'>ExBy</h1>
                                             </Dialog.Title>
 
                                         </div>
                                         <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                                            {products.length > 0 ?
-                                                <div className='flex flex-col justify-start items-center flex-1 h-full divide-y-2 gap-4'>
-                                                    <button onClick={handleClear} className='w-full bg-error-100 text-error-500 py-2 px-4 rounded-lg hover:bg-red-500 hover:text-white'>Empty cart</button>
-                                                    <div className='w-full h-full flex flex-col justify-start items-center gap-4 pt-4'>
-                                                        {products?.map((product) => <ProductCard product={product} key={product._id}/>)}
-
-                                                    </div>
-                                                    <div className='w-full text-start p-4'>
-                                                        Subtotal: ${parsePrice(products.reduce(
-                                                            (accumulator, currentValue) => accumulator + currentValue?.product_id?.price * currentValue.quantity,
-                                                            0
-                                                        ))}
-                                                    </div>
-                                                    <div className='w-full my-4'>
-                                                        <button className='bg-success-100 text-success-500 w-full rounded-lg p-2 my-2 hover:bg-success-500 hover:text-white'>Checkout</button>
-                                                    </div>
-                                                </div> :
-                                                <div className='w-full h-full flex flex-col justify-center items-center'>
-                                                    <p className='text-paragraph-secondary'>No products in the cart</p>
-                                                </div>
-
-                                            }
+                                            {categories?.map(category => {
+                                                return <Disclosure >
+                                                    <Disclosure.Button className="py-2 w-full text-start rounded-lg border my-2 px-2 flex flex-row items-center gap-2">
+                                                        {category.name} <ChevronDownIcon className='w-4 h-4' />
+                                                    </Disclosure.Button>
+                                                    <Disclosure.Panel className="text-gray-500">
+                                                        <div className="flex flex-col justify-start items-start p-4 gap-4">
+                                                            {subcategories?.filter(item => item.category_id === category._id).map((item) =>
+                                                                <button key={item._id} onClick={() => handleClick(category._id,item._id)}
+                                                                    className='font-medium rounded-lg border p-2 text-paragraph-primary w-full flex flex-row justify-between items-center hover:bg-bg-medium break-words'>
+                                                                    {item.name}
+                                                                </button>)}
+                                                        </div>
+                                                    </Disclosure.Panel>
+                                                </Disclosure>
+                                            })}
 
                                         </div>
                                     </div>

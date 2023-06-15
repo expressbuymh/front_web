@@ -7,7 +7,7 @@ export default function Main({ children }) {
   return (
     <>
       <div className='w-full h-screen flex flex-col'>
-        <header className='px-12 shadow-sm'>
+        <header className='px-4 lg:px-12 shadow-sm'>
           <Navbar />
         </header>
         <main className='grow'>
