@@ -1,12 +1,12 @@
 import axios from "axios"
 
-export let apiUrl = 'http://localhost:8000/'
+export let apiUrl = 'https://expressbuymh.onrender.com/'
 
 if (process.env.NODE_ENV === 'production') {
   apiUrl = import.meta.env.VITE_API
 }
 
-export const api = axios.create({baseURL: 'http://localhost:8000/'})
+export const api = axios.create({baseURL: apiUrl})
 
 export const endpoints = {
   sign_in: "/auth/signin",
