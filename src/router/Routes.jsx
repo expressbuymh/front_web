@@ -37,6 +37,7 @@ import ChatBot from '../chat/chat'
 import { OrderDetailsAdmin } from '../pages/admin/OrderDetailsAdmin'
 import { CreateProducts } from '../pages/admin/CreateProducts'
 import { HomeAdmin } from '../pages/admin/HomeAdmin'
+import { PaymentSuccess } from '../pages/checkout/PaymentSuccess'
 
 
 
@@ -108,6 +109,14 @@ export function Routes() {
         element={
           <MainLayout>
             <Payment />
+          </MainLayout>
+        }
+      />
+      <Route
+        path='/payment/success'
+        element={
+          <MainLayout>
+            <PaymentSuccess/>
           </MainLayout>
         }
       />
