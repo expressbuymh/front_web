@@ -8,7 +8,7 @@ import { Cart } from './navbar/Cart'
 import { Slideover } from './navbar/Slideover'
 import { SlideoverMenu } from './navbar/SlideoverMenu'
 import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 function Navbar() {
   const { user, token } = useSelector(store => store.user.data)
@@ -18,6 +18,9 @@ function Navbar() {
   useEffect(() => {
     setOpen(false)
   },[location])
+  const navigate = useNavigate()
+
+
   return (
     <>
       <nav className='w-full h-[70px] flex flex-row items-center justify-between border-b text-paragraph-primary'>
@@ -25,7 +28,7 @@ function Navbar() {
           <Bars3Icon className='w-8 h-8'/>
         </button>
         <SlideoverMenu open={open} setOpen={setOpen}/>
-        <h1 className='font-black text-primary-600 text-3xl hidden lg:block'>ExBy</h1>
+        <h1 onClick={()=>navigate("/")} className='font-black text-primary-600 text-3xl hidden lg:block'>ExBy</h1>
         {!token && <AuthLinks />}
         {token &&
           <div className='flex flew-row  divide-x-2 items-center'>
