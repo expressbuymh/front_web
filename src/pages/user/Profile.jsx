@@ -1,5 +1,7 @@
 export function Profile(){
     return(
-        <h1>Profile</h1>
+        <div className="w-full h-full bg-error-500">
+            <p>hola</p>
+        </div>
     )
 }
