@@ -27,32 +27,32 @@ export function Products() {
   }
   return (
     <div className='w-full h-full flex flex-col justify-center items-start p-4 lg:flex-row'>
-      <div className='filter lg:w-1/4 w-full p-4 my-4 flex flex-col justify-start items-start rounded-lg'>
+      <div className='filter lg:w-1/4 w-full my-5 flex flex-col justify-start items-start rounded-lg'>
         <Disclosure >
-          <Disclosure.Button className="py-2 w-full text-start rounded-lg border my-2 px-2 flex flex-row items-center gap-2">
+          <Disclosure.Button className="py-2 w-full text-start rounded-lg border px-2 flex flex-row items-center gap-2">
             Filters <ChevronDownIcon className='w-4 h-4' />
           </Disclosure.Button>
           <Disclosure.Panel className="text-gray-500 w-full">
           <form className='w-full h-full text-white' onSubmit={handleFilters}>
-          <div className='my-2'>
-            <label htmlFor="category_id">Categories</label>
-            <select className='border rounded-lg p-2 w-full' name="category_id" value={category} onChange={(e) => setCategory(e.target.value)} defaultValue={searchParams.get("category_id")}>
+          <div className='my-2 flex flex-col gap-1'>
+            <label htmlFor="category_id" className='font-medium'>Categories</label>
+            <select className='border rounded-lg font-light p-2 w-full' name="category_id" value={category} onChange={(e) => setCategory(e.target.value)} defaultValue={searchParams.get("category_id")}>
               <option value="">All</option>
               {categories?.map((category) => {
                 return <option key={category._id} selected={category._id === searchParams.get("category_id")} value={category?._id}>{category?.name}</option>
               })}
             </select>
           </div>
-          <div className='my-2'>
-            <label htmlFor="subcategory_id">Subcategories</label>
-            <select className='border w-full rounded-lg p-2' name="subcategory_id" defaultValue={searchParams.get("subcategory_id")}>
+          <div className='my-2 flex flex-col gap-1'>
+            <label htmlFor="subcategory_id" className='font-medium'>Subcategories</label>
+            <select className='border w-full font-light rounded-lg p-2' name="subcategory_id" defaultValue={searchParams.get("subcategory_id")}>
               <option value="">All</option>
               {subcategories?.filter(item => item.category_id === category).map((subcategory) => {
                 return <option key={subcategory._id} selected={subcategory._id === searchParams.get("subcategory_id")} value={subcategory?._id}>{subcategory?.name}</option>
               })}
             </select>
           </div>
-          <InputText name={"name"} label={"Name"} error={null} type={"text"} placeholder={"product name"} />
+          <InputText name={"name"} label={"Name"} error={null} type={"text"} placeholder={"Product name"} />
           <div className='flex flex-row justify-between items-center gap-2'>
             <div className='w-1/2'>
               <InputText name={"min_price"} label={"Min price"} error={null} type={"text"} placeholder={"Min price"} />

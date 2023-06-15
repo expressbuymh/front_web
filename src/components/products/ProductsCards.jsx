@@ -30,7 +30,7 @@ export function ProductsCards(){
                  <p className="h-[1.5rem]"></p>
                 </div> }       
           </div>
-          <button onClick={()=>navigate("/products")} className="bg-primary-500 w-full h-20 rounded-lg mb-4 font-medium text-lg text-white">Go Products</button>
+          <button onClick={()=>navigate("/products")} className="bg-primary-500 w-full h-20 rounded-lg mb-4 font-medium text-lg text-white">Go to products</button>
         </div>
       ))}
     </div>

@@ -1,22 +1,14 @@
-function Footer () {
+function Footer() {
   return (
-    <div className='w-[100%] h-[30vh] bg-black'>
-      <div className='w-[100%] flex justify-between py-5 px-9 border-b-[1px] border-stone-500 md:px-24'>
-        <img className='h-10 w-10' src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Cora_logo.svg/120px-Cora_logo.svg.png' alt='' />
-        <div className='w-[30%] md:flex md:flex-col md:items-end'>
-          <h2 className='text-white text-[11px] text-center mb-2 md:mr-4'>SOCIAL MEDIA</h2>
-          <div className='flex flex-row justify-around gap-3 md:justify-center md:gap-7'>
-          </div>
-        </div>
+    <div className='w-full h-fit bg-bg-medium'>
+      <div className='w-full flex justify-between border-b border-stone-400 md:px-24'>
       </div>
-      <div className='text-white text-sm my-5 text-center'>
-        <h2>Abous us</h2>
-        <h2>Contact us</h2>
-        <h2>Get the app</h2>
-        <h2>Text</h2>
-        <h2>Text</h2>
+      <p className='text-primary-700 text-center text-sm font-bold mt-4'>&copy; 2023 ExpressBuy</p>
+      <div className=' flex text-md font-medium my-5 text-center justify-center'>
+
+        <p>Matias Tejerina, Facundo Cartolano, Cristian Alvarez , Flavio Brito, Cistian Sandoval, Carlos Torres</p>
+
       </div>
-      <p className='text-white/50 text-center text-xs'>&copy; 2023 expressBuy</p>
     </div>
   )
 }
