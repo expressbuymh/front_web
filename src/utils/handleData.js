@@ -52,3 +52,7 @@ export function parseDiscountPrice(price,percentage){
 export function parsePrice(price){
     return Intl.NumberFormat("de-DE").format(price)
 }
+export function parseDate(date){
+    let newDate = new Date(date).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})
+    return newDate
+}

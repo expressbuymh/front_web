@@ -15,7 +15,8 @@ export const endpoints = {
   sign_in_token: "auth/token",
   get_menu: "menu",
   get_products: "products",
-  get_discounts: "products/discounts"
+  get_discounts: "products/discounts",
+  get_orders: "orders/me"
 }
 
 export const adminEnpoints =  {
