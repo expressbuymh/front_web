@@ -44,8 +44,8 @@ export function Orders() {
 
                         </p>
                         <p className="text-center">#{order.n_order}</p>
-                        <p className="text-center">${parsePrice(order.total_price) }</p>
-                        <button onClick={() => navigate(`/user/orders/details/${order._id}`, { state:  order })} className="text-primary-500 underline text-center">details</button>
+                        <p className="text-center">${parsePrice(order.total_price)}</p>
+                        <button onClick={() => navigate(`/user/orders/details/${order._id}`, { state: order })} className="text-primary-500 underline text-center">Details</button>
                     </div>
                 })}
             </div>

@@ -78,9 +78,9 @@ useEffect(() => {
       </div>
       {!products?.some(product_cart=>product_cart.product_id._id === items._id ) ? <button onClick={() =>handleAddClick(itemsAdd,cart_id,items)} className='bg-primary-500 w-full h-10 rounded-lg mb-4 font-medium text-lg text-white'>Add to cart</button>
       :  <div className="flex flex-row justify-center items-center text-primary-500 gap divide-x  border  rounded-lg overflow-hidden">
-            <button disabled={products.find(item=>item.product_id._id === items._id).quantity === 1} onClick={() => handleMinusClick(items._id, products.find(item=>item.product_id._id === items._id).quantity)} className="px-2 py-1 hover:bg-bg-medium text-paragraph-primary  w-8 text-center">-</button>
-              <p className="px-2 py-1 w-8 text-center text-paragraph-primary">{products.find(item=>item.product_id._id === items._id).quantity}</p>
-            <button onClick={() => handlePlusClick(items._id,products.find(item=>item.product_id._id === items._id).quantity)} className="px-2 py-1 hover:bg-bg-medium w-8 text-center text-paragraph-primary">+</button>
+            <button disabled={products.find(item=>item.product_id._id === items._id).quantity === 1} onClick={() => handleMinusClick(items._id, products.find(item=>item.product_id._id === items._id).quantity)} className="px-2 py-1 font-bold hover:bg-bg-medium text-paragraph-primary  w-12 text-center">-</button>
+              <p className="px-2 py-1  w-12 text-center font-medium text-paragraph-primary">{products.find(item=>item.product_id._id === items._id).quantity}</p>
+            <button onClick={() => handlePlusClick(items._id,products.find(item=>item.product_id._id === items._id).quantity)} className="px-2 py-1 hover:bg-bg-medium font-bold  w-12 text-center text-paragraph-primary">+</button>
           </div>}
     </div>
   )
