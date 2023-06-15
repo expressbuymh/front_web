@@ -1,24 +1,64 @@
 import { useEffect, useState } from 'react'
 import { ProductCard } from '../../components/products/ProductCard'
 import { api, endpoints } from '../../utils/api'
-import { useNavigate } from 'react-router-dom'
-
-export function Products () {
+import { useSearchParams } from 'react-router-dom'
+import { InputText } from "../../components/forms/InputText"
+import { parseDataFromForm } from '../../utils/handleData'
+import { useSelector } from 'react-redux'
+export function Products() {
   const [products, setProducts] = useState([])
- 
+  const { categories, subcategories } = useSelector(store => store.menu)
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [category, setCategory] = useState(null)
   useEffect(() => {
-    api.get(endpoints.get_products).then(res => setProducts(res.data.products)).catch(err => console.log(err))
-  }, [])
+    api.get(endpoints.get_products + location.search).then(res => { setProducts(res.data.products) }).catch(err => console.log(err))
+    setCategory(searchParams.get("category_id"))
+  }, [searchParams])
+  function handleFilters(e) {
+    e.preventDefault()
+    const { data } = parseDataFromForm(e)
+    setSearchParams(data);
 
+    console.log(searchParams)
+  }
   return (
-    <div className='w-full h-full flex flex-col justify-center items-center p-4 lg:flex-row'>
-      <div className='filter w-1/4 h-full bg-bg-dark flex flex-col justify-center items-center'>
-        <form className='w-full h-full text-white'>
-          FILTROS
+    <div className='w-full h-full flex flex-col justify-center items-start p-4 lg:flex-row'>
+      <div className='filter w-1/4 border-2 p-4 my-4 flex flex-col justify-start items-start rounded-lg'>
+        <form className='w-full h-full text-white' onSubmit={handleFilters}>
+          <div className='my-2'>
+            <label htmlFor="category_id">Categories</label>
+            <select  className='border rounded-lg p-2 w-full' name="category_id" value={category} onChange={(e) => setCategory(e.target.value)} defaultValue={searchParams.get("category_id")}>
+              <option value="">All</option>
+              {categories?.map((category) => {
+                return <option key={category._id} selected={category._id === searchParams.get("category_id")} value={category?._id}>{category?.name}</option>
+              })}
+            </select>
+          </div>
+          <div className='my-2'>
+            <label htmlFor="subcategory_id">Subcategories</label>
+            <select className='border w-full rounded-lg p-2' name="subcategory_id" defaultValue={searchParams.get("subcategory_id")}>
+              <option value="">All</option>
+              {subcategories?.filter(item => item.category_id === category).map((subcategory) => {
+                return <option key={subcategory._id} selected={subcategory._id === searchParams.get("subcategory_id")} value={subcategory?._id}>{subcategory?.name}</option>
+              })}
+            </select>
+          </div>
+          <InputText name={"name"} label={"Name"} error={null} type={"text"} placeholder={"product name"} />
+          <div className='flex flex-row justify-between items-center gap-2'>
+            <div className='w-1/2'>
+              <InputText name={"min_price"} label={"Min price"} error={null} type={"text"} placeholder={"Min price"} />
+            </div>
+            <div className='w-1/2'>
+              <InputText name={"max_price"} label={"Max price"} error={null} type={"text"} placeholder={"Max price"} />
+            </div>
+          </div>
+
+
+          <button className='rounded-lg bg-primary-600 hover:bg-primary-500 text-white font-medium w-full p-2 my-4'>Apply filters</button>
         </form>
       </div>
       <div className='grow w-full grid grid-cols-1 md:grid-col-2 lg:grid-cols-4 gap-2 p-2 '>
-        {products?.map((item) => <ProductCard staticProduct={item} key={item} />)}
+        {products?.map((item) => <ProductCard staticProduct={item} key={item._id} />)}
       </div>
     </div>
   )

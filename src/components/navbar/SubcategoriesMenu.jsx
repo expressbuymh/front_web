@@ -6,7 +6,7 @@ export function PopoverButton({ category, subcategories }) {
     function handleClick(cb, id) {
         navigate({
             pathname: '/products',
-            search: `?subcategory_id=${id}`
+            search: `?category_id=${category._id}&subcategory_id=${id}`
         })
     }
     return (
