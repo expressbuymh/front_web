@@ -40,7 +40,6 @@ export function ProductDetails () {
             <p className='w-fit font-semibold p-1 my-2'>${parsePrice(product.price)}</p>
             <p className='h-[1.5rem]' />
           </div>}
-          <button className='flex justify-center mt-5 bg-primary-700 w-32 h-12 text-lg text-white rounded-lg items-center'>Add cart</button>
           </div>
         </div>
       </>)}

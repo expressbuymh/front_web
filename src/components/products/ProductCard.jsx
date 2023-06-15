@@ -32,7 +32,7 @@ export function ProductCard ({ staticProduct }) {
     console.log(product)
     dispatch(set_product({product, minus: true, cart_id}))
 }
-function handleAddClick(product_id, quantity){
+function handlePlusClick(product_id, quantity){
     let product = {
         product_id,
         quantity
@@ -80,7 +80,7 @@ useEffect(() => {
       :  <div className="flex flex-row justify-center items-center text-primary-500 gap divide-x  border  rounded-lg overflow-hidden">
             <button disabled={products.find(item=>item.product_id._id === items._id).quantity === 1} onClick={() => handleMinusClick(items._id, products.find(item=>item.product_id._id === items._id).quantity)} className="px-2 py-1 hover:bg-bg-medium text-paragraph-primary  w-8 text-center">-</button>
               <p className="px-2 py-1 w-8 text-center text-paragraph-primary">{products.find(item=>item.product_id._id === items._id).quantity}</p>
-            <button onClick={() => handleAddClick(items._id,products.find(item=>item.product_id._id === items._id).quantity)} className="px-2 py-1 hover:bg-bg-medium w-8 text-center text-paragraph-primary">+</button>
+            <button onClick={() => handlePlusClick(items._id,products.find(item=>item.product_id._id === items._id).quantity)} className="px-2 py-1 hover:bg-bg-medium w-8 text-center text-paragraph-primary">+</button>
           </div>}
     </div>
   )
