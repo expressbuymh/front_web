@@ -2,16 +2,17 @@ import { useEffect,useState } from "react"
 import { parseDiscountPercentage, parseDiscountPrice } from "../../utils/handleData"
 import { api, endpoints, headers } from "../../utils/api"
 import { LS } from "../../utils/localStorageUtils"
+import { useNavigate } from "react-router-dom"
 
 
 export function ProductsCards(){
   const [productsArray, setProductsArray] = useState()
-
+  const navigate = useNavigate()
   useEffect(() => {
     api.get(endpoints.get_discounts, headers(LS.get("token"))).then(res => setProductsArray(res.data.products)).catch(err => console.log(err))
   },[])
   return (
-    <div className=" h-fit flex flex-row gap-4">
+    <div className=" h-fit sm:grid-cols-3 sm:grid grid-cols-1 gap-3 lg:grid lg:grid-cols-4">
       {productsArray?.map((items) => (
         <div key={items._id} className="w-full bg-white flex flex-col justify-center items-center px-2 border rounded-lg ">
           <img src={items.photo} alt={items.name} className="h-4/5 w-1/2 object-contain"/> 
@@ -29,7 +30,7 @@ export function ProductsCards(){
                  <p className="h-[1.5rem]"></p>
                 </div> }       
           </div>
-          <button className="bg-primary-500 w-full h-20 rounded-lg mb-4 font-medium text-lg text-white">Agregar al carrito</button>
+          <button onClick={()=>navigate("/products")} className="bg-primary-500 w-full h-20 rounded-lg mb-4 font-medium text-lg text-white">Go Products</button>
         </div>
       ))}
     </div>

@@ -22,7 +22,7 @@ export function Home(items,card) {
       </div>
       <CardSales/>
       <div className="w-11/12 my-6">
-        <p className="font-bold text-paragraph-primary my-4 text-2xl">Productos destacados</p>
+        <p className="font-bold text-paragraph-primary my-4 text-2xl">Featured products</p>
         <ProductsCards/>
       </div>
     </div>

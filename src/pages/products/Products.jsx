@@ -5,6 +5,10 @@ import { useSearchParams } from 'react-router-dom'
 import { InputText } from "../../components/forms/InputText"
 import { parseDataFromForm } from '../../utils/handleData'
 import { useSelector } from 'react-redux'
+import { Disclosure } from '@headlessui/react'
+import { ChevronDownIcon } from '@heroicons/react/24/outline'
+
+
 export function Products() {
   const [products, setProducts] = useState([])
   const { categories, subcategories } = useSelector(store => store.menu)
@@ -23,11 +27,16 @@ export function Products() {
   }
   return (
     <div className='w-full h-full flex flex-col justify-center items-start p-4 lg:flex-row'>
-      <div className='filter w-1/4 border-2 p-4 my-4 flex flex-col justify-start items-start rounded-lg'>
-        <form className='w-full h-full text-white' onSubmit={handleFilters}>
+      <div className='filter lg:w-1/4 w-full p-4 my-4 flex flex-col justify-start items-start rounded-lg'>
+        <Disclosure >
+          <Disclosure.Button className="py-2 w-full text-start rounded-lg border my-2 px-2 flex flex-row items-center gap-2">
+            Filters <ChevronDownIcon className='w-4 h-4' />
+          </Disclosure.Button>
+          <Disclosure.Panel className="text-gray-500 w-full">
+          <form className='w-full h-full text-white' onSubmit={handleFilters}>
           <div className='my-2'>
             <label htmlFor="category_id">Categories</label>
-            <select  className='border rounded-lg p-2 w-full' name="category_id" value={category} onChange={(e) => setCategory(e.target.value)} defaultValue={searchParams.get("category_id")}>
+            <select className='border rounded-lg p-2 w-full' name="category_id" value={category} onChange={(e) => setCategory(e.target.value)} defaultValue={searchParams.get("category_id")}>
               <option value="">All</option>
               {categories?.map((category) => {
                 return <option key={category._id} selected={category._id === searchParams.get("category_id")} value={category?._id}>{category?.name}</option>
@@ -56,6 +65,8 @@ export function Products() {
 
           <button className='rounded-lg bg-primary-600 hover:bg-primary-500 text-white font-medium w-full p-2 my-4'>Apply filters</button>
         </form>
+          </Disclosure.Panel>
+        </Disclosure>
       </div>
       <div className='grow w-full grid grid-cols-1 md:grid-col-2 lg:grid-cols-4 gap-2 p-2 '>
         {products?.map((item) => <ProductCard staticProduct={item} key={item._id} />)}

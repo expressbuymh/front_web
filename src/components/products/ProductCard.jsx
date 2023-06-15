@@ -5,10 +5,10 @@ import { api, endpoints } from '../../utils/api'
 import { useDispatch, useSelector } from 'react-redux'
 import cartActions from '../../store/user/cart/cartActions'
 
-const {add_product} = cartActions
+const {add_product,set_product, remove_product} = cartActions
 export function ProductCard ({ staticProduct }) {
 
-  const itemsAdd = staticProduct._id
+  const itemsAdd = staticProduct
   const [items,setItems] = useState(staticProduct)
   const {cart_id,products} = useSelector(store => store.user.cart)
   const {id} = useParams()
@@ -23,6 +23,28 @@ export function ProductCard ({ staticProduct }) {
     }
     dispatch(add_product({data_product,product_db, cart_id}))
   }
+
+  function handleMinusClick(product_id, quantity){
+    let product = {
+        product_id,
+        quantity
+    }
+    console.log(product)
+    dispatch(set_product({product, minus: true, cart_id}))
+}
+function handleAddClick(product_id, quantity){
+    let product = {
+        product_id,
+        quantity
+    }
+    console.log(product)
+    dispatch(set_product({product, minus: false, cart_id}))
+}
+
+
+useEffect(() => {
+  console.log(itemsAdd)
+}, [])
 
   useEffect(() => {
     api.get(endpoints.get_products)
@@ -54,8 +76,12 @@ export function ProductCard ({ staticProduct }) {
             <p className='h-[1.5rem]' />
           </div>}
       </div>
-      {!products?.some(product_cart=>product_cart.product_id._id === items._id ) ? <button onClick={() =>handleAddClick(itemsAdd,cart_id,items)} className='bg-primary-500 w-full h-10 rounded-lg mb-4 font-medium text-lg text-white'>Agregar al carrito</button>
-      : <p>estoy en carrito bro</p>}
+      {!products?.some(product_cart=>product_cart.product_id._id === items._id ) ? <button onClick={() =>handleAddClick(itemsAdd,cart_id,items)} className='bg-primary-500 w-full h-10 rounded-lg mb-4 font-medium text-lg text-white'>Add to cart</button>
+      :  <div className="flex flex-row justify-center items-center text-primary-500 gap divide-x  border  rounded-lg overflow-hidden">
+            <button disabled={products.find(item=>item.product_id._id === items._id).quantity === 1} onClick={() => handleMinusClick(items._id, products.find(item=>item.product_id._id === items._id).quantity)} className="px-2 py-1 hover:bg-bg-medium text-paragraph-primary  w-8 text-center">-</button>
+              <p className="px-2 py-1 w-8 text-center text-paragraph-primary">{products.find(item=>item.product_id._id === items._id).quantity}</p>
+            <button onClick={() => handleAddClick(items._id,products.find(item=>item.product_id._id === items._id).quantity)} className="px-2 py-1 hover:bg-bg-medium w-8 text-center text-paragraph-primary">+</button>
+          </div>}
     </div>
   )
 }

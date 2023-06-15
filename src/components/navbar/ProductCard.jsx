@@ -2,6 +2,7 @@ import { TrashIcon } from "@heroicons/react/24/outline"
 import cartActions from "../../store/user/cart/cartActions"
 import { useDispatch, useSelector } from "react-redux"
 import { parsePrice } from "../../utils/handleData"
+import { useEffect } from "react"
 
 const {set_product, remove_product} = cartActions
 
@@ -33,7 +34,9 @@ export function ProductCard({product}){
         console.log(product)
         dispatch(remove_product({product, cart_id}))
     }
-   
+    useEffect(() => {
+        console.log(actualProduct)
+      }, [])
     return(
         <div key={actualProduct._id} className="w-full h-[96px] flex flex-row justify-between p-2 border rounded-lg">
             <img src={actualProduct.photo} className="w-20 h-20 object-contain rounded-lg p-1" alt="" />
