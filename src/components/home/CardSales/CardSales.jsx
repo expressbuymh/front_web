@@ -29,7 +29,7 @@ export function CardSales(){
       <div className="lg:w-1/3 w-2/3 bg-white min-h-[180px] flex items-center justify-center gap-3 border rounded-lg" key={card._id}>
         <img src={card.photo} alt="" className="w-1/5 " />
         <div className="w-3/5 text-sm">{card.desription}</div>
-        <div className="w-1/5 font-bold text-lg flex flex-col items-center">{card.procentaje}<span className="text-sm font-light underline text-center p-1">Ver legales</span></div>
+        <div className="w-1/5 font-bold text-lg flex flex-col items-center">{card.procentaje}<span className="text-sm font-light underline text-center p-1">Legals</span></div>
     </div>
     ))}
     
