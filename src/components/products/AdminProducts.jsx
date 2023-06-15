@@ -3,7 +3,7 @@ import { api, apiUrl, endpoints, headers } from '../../utils/api'
 import { useNavigate, useParams } from 'react-router-dom'
 import {LS} from "../../utils/localStorageUtils"
 import { parsePrice } from '../../utils/handleData'
-import { ChevronLeftIcon, UserCircleIcon } from '@heroicons/react/20/solid'
+
 
 export function AdminProducts ({ staticItems }) {
   const navigate = useNavigate()

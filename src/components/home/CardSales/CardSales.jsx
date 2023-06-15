@@ -7,19 +7,19 @@ export function CardSales(){
     {
       _id: "1",
       photo:mastercard,
-      desription:"Realiza tu pedido el día que prefieras y programá tu entrega para el día Lunes.",
+      desription:"Place your order on the day of your choice and schedule your delivery for Monday.",
       procentaje:"%25"
     },
     {
       _id: "2",
       photo:visa,
-      desription:"Realiza tu pedido el día que prefieras y programá tu entrega para el día Viernes con tu tarjeta Mastercard.",
+      desription:"Place your order on the day you prefer and schedule your delivery for Friday with your Mastercard.",
       procentaje:"%20"
     },
     {
       _id: "3",
       photo:mp,
-      desription:"Realiza tus compras los días Miércoles y programá tu entrega para el día que prefieras.",
+      desription:"Make your purchases on Wednesdays and schedule your delivery for the day of your choice.",
       procentaje:"%15"
     }
   ]

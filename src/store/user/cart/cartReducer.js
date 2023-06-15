@@ -6,7 +6,7 @@ import cartActions from './cartActions'
 
 
 const { sign_in, sign_in_token, sign_out } = authActions
-const { set_product, remove_product, clear_cart } = cartActions
+const { set_product, remove_product, clear_cart,add_product } = cartActions
 
 const inicialState = {
   cart_id: null,
@@ -148,7 +148,17 @@ const reducer = createReducer(
       (state, action) => {
         const newState = {
           ...state,
-          products: state.products.filter((product) => product.product_id._id !== action.payload.product_id)
+          products: []
+        }
+        return newState
+      }
+    )
+    .addCase(
+      add_product.fulfilled,
+      (state, action) => {
+        const newState = {
+          ...state,
+          products: [...state.products,{product_id:action.payload.product_data,quantity:1}]
         }
         return newState
       }

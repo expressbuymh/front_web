@@ -72,7 +72,27 @@ const clear_cart = createAsyncThunk("clear_product", async ({  cart_id }, { reje
     //product_id
     //quantity
 })
+const add_product = createAsyncThunk("add_product", async ({ product_db,data_product, cart_id }, { rejectWithValue }) => {
+    {
+        try {
+            console.log(product_db)
+            let response = await api.post(cart_endpoint.set_product + cart_id, product_db, headers(LS.get("token")))
+            return {
+                product_id: product_db.product_id,
+                quantity: product_db.quantity,
+                product_data:data_product,
+            }
+        } catch (error) {
+            return rejectWithValue({
+                error
+            })
+        }
+
+    }
+    //product_id
+    //quantity
+})
 //checkout
 
-const actions = { set_product, remove_product, clear_cart }
+const actions = { set_product, remove_product, clear_cart,add_product }
 export default actions
