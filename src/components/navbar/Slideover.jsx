@@ -1,18 +1,25 @@
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/24/outline'
+import { XMarkIcon, PlusCircleIcon } from '@heroicons/react/24/outline'
 import { ProductCard } from './ProductCard'
 import { useDispatch, useSelector } from 'react-redux'
 import cartActions from '../../store/user/cart/cartActions'
 import { parsePrice } from '../../utils/handleData'
+import { useNavigate } from 'react-router-dom'
 
-const {clear_cart} = cartActions
+const { clear_cart } = cartActions
 
 export function Slideover({ open, setOpen }) {
     const { products, cart_id } = useSelector(store => store.user.cart)
+    const { addresses } = useSelector(store => store.user.data)
+    const navigate = useNavigate()
+
     const dispatch = useDispatch()
-    function handleClear(){
-        dispatch(clear_cart({cart_id}))
+    function handleAddAddress(){
+        navigate("/user/profile/adresses/create")
+    }
+    function handleClear() {
+        dispatch(clear_cart({ cart_id }))
     }
     return (
         <Transition.Root show={open} as={Fragment}>
@@ -64,8 +71,22 @@ export function Slideover({ open, setOpen }) {
                                     </Transition.Child>
                                     <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
                                         <div className="px-4 sm:px-6">
-                                            <Dialog.Title className="text-base font-semibold leading-6 text-gray-900">
+                                            <Dialog.Title className="text-base font-semibold leading-6 text-gray-900 flex flex-col justify-start items-start">
                                                 Your cart
+                                                {addresses?.length > 0 ?
+                                                    <>
+                                                        <p className='text-paragraph-primary font-medium mt-2'>Shipment address</p>
+                                                        <select className='w-full border rounded-lg p-2 mt-2'>
+                                                            {addresses.map((address) => {
+                                                                return <option>
+                                                                    {address.name}
+                                                                </option>
+                                                            })}
+
+                                                        </select>
+                                                    </>
+
+                                                    : <button onClick={handleAddAddress} className='w-full border flex flex-row gap-2 items-center justify-center bg-bg-medium text-paragraph-secondary p-2 rounded-lg my-2'>Create address <PlusCircleIcon className='w-6 h-6 stroke-paragraph-secondary'/></button>}
                                             </Dialog.Title>
 
                                         </div>
@@ -74,7 +95,7 @@ export function Slideover({ open, setOpen }) {
                                                 <div className='flex flex-col justify-start items-center flex-1 h-full divide-y-2 gap-4'>
                                                     <button onClick={handleClear} className='w-full bg-error-100 text-error-500 py-2 px-4 rounded-lg hover:bg-red-500 hover:text-white'>Empty cart</button>
                                                     <div className='w-full h-full flex flex-col justify-start items-center gap-4 pt-4'>
-                                                        {products?.map((product) => <ProductCard product={product} key={product._id}/>)}
+                                                        {products?.map((product) => <ProductCard product={product} key={product._id} />)}
 
                                                     </div>
                                                     <div className='w-full text-start p-4'>

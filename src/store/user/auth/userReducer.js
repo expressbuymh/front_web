@@ -1,9 +1,9 @@
 import { createReducer } from '@reduxjs/toolkit'
 import actions from './authActions'
-
+import addressActions from "../address/addressActions"
 
 const { sign_in, sign_in_token, sign_out, sign_up } = actions
-
+const {create} = addressActions
 
 const initialState = {
   loading: {
@@ -15,6 +15,7 @@ const initialState = {
   },
   user: null,
   token: null,
+  addresses: null,
   error: {
     sign_in: null,
     sign_up: null,
@@ -41,6 +42,7 @@ const reducer = createReducer(
           ...state,
           user: action.payload.user,
           token: action.payload.token,
+          addresses: action.payload.addresses,
           success: {
             ...state.success,
             sign_in: true
@@ -94,6 +96,7 @@ const reducer = createReducer(
           ...state,
           user: action.payload.user,
           token: action.payload.token,
+          addresses: action.payload.addresses,
           success: {
             ...state.success,
             sign_in_token: true
@@ -246,6 +249,15 @@ const reducer = createReducer(
             ...state.loading,
             sign_up: false
           }
+        }
+        return newState
+      }
+    )
+    .addCase(
+      create.fulfilled,
+      (state, action) => {
+        const newState = {
+          addresses: [state.addresses, action.payload.address]
         }
         return newState
       }

@@ -16,7 +16,9 @@ export const endpoints = {
   get_menu: "menu",
   get_products: "products",
   get_discounts: "products/discounts",
-  get_orders: "orders/me"
+  get_orders: "orders/me",
+  get_addresses: "addresses/me",
+  create_address: "addresses"
 }
 
 export const adminEnpoints =  {
