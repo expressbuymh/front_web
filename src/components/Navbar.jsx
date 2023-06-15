@@ -1,20 +1,31 @@
 import { useSelector } from 'react-redux'
+import {Bars3Icon} from '@heroicons/react/24/solid'
 import { SearchBar } from './navbar/SearchBar'
 import { PopoverButton } from './navbar/SubcategoriesMenu'
 import { Avatar } from './navbar/Avatar'
 import { AuthLinks } from './navbar/AuthLinks'
 import { Cart } from './navbar/Cart'
+import { Slideover } from './navbar/Slideover'
+import { SlideoverMenu } from './navbar/SlideoverMenu'
+import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 
 function Navbar() {
   const { user, token } = useSelector(store => store.user.data)
+  const [open, setOpen] = useState(false)
+  const location = useLocation()
   const { categories, subcategories } = useSelector(store => store.menu)
+  useEffect(() => {
+    setOpen(false)
+  },[location])
   return (
     <>
       <nav className='w-full h-[70px] flex flex-row items-center justify-between border-b text-paragraph-primary'>
-        <h1 className='font-black text-primary-600 text-3xl'>ExBy</h1>
-        <div className='flex flex-row justify-center items-center grow'>
-          <SearchBar />
-        </div>
+        <button onClick={() => setOpen(!open)} className='lg:hidden'>
+          <Bars3Icon className='w-8 h-8'/>
+        </button>
+        <SlideoverMenu open={open} setOpen={setOpen}/>
+        <h1 className='font-black text-primary-600 text-3xl hidden lg:block'>ExBy</h1>
         {!token && <AuthLinks />}
         {token &&
           <div className='flex flew-row  divide-x-2 items-center'>
@@ -27,7 +38,7 @@ function Navbar() {
           </div>
         }
       </nav>
-      <nav className='w-full flex flex-row justify-start items-center gap-4 my-2 flex-wrap'>
+      <nav  className='hidden  w-full lg:flex lg:flex-row justify-start items-center gap-4 my-2 flex-wrap'>
         {categories?.filter((item) => item.active).map((item) => <PopoverButton key={item._id} category={item} subcategories={subcategories?.filter(itemsub => itemsub.category_id === item._id && itemsub.active)} />)}
       </nav>
     </>

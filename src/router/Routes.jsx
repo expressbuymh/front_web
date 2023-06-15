@@ -49,7 +49,8 @@ export function Routes() {
         element={
           <MainLayout>
             <Home />
-            <ChatBot/>
+            <div className='hidden lg:block'><ChatBot/></div>
+            
           </MainLayout >
         } />
       <Route
