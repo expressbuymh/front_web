@@ -2,13 +2,13 @@ import axios from "axios"
 import { apiUrl } from "../../utils/api"
 
 export function Checkout() {
-    let carrito = [{
-        title: 'facu',
-        picture_url: 'https://avatars.githubusercontent.com/u/71531719?v=4',
-        description: 'perro-lanudo buen amigo',
-        quantity: 5,
-        unit_price: 200
-    }]
+    let order = {
+        _id: "648b1261b089100078de2a96",
+        id: 1,
+        title: '#3',
+        quantity: 1,
+        unit_price: 41440
+    }
     return (
         <div>
             <h1 className="flex justify-center">Checkout</h1>
@@ -16,7 +16,7 @@ export function Checkout() {
                 <p></p>
                 <button className="bg-[#4338ca] hover:bg-[#4310ca] text-white font-bold py-3 px-3 rounded-full"
                     onClick={() =>
-                        axios.post(apiUrl + "paymments", carrito)
+                        axios.post(apiUrl + "paymments", order)
                             //el back espera recibir el carrito de esta manera :
                             /* items: [{
                                         id: 123,

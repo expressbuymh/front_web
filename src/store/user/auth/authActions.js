@@ -10,12 +10,14 @@ const sign_in = createAsyncThunk("sign_in", async ({ data }, { rejectWithValue }
   try {
     let response = await api.post(endpoints.sign_in, data);
     LS.add('token', response.data.token)
+    let addressesResponse = await api.get(endpoints.get_addresses,headers(LS.get("token")))
     console.log(response.data.cart)
     return {
       success: response.data.sucess,
       user: response.data.user,
       cart: response.data.cart,
-      token: response.data.token
+      token: response.data.token,
+      addresses: addressesResponse.data.addresses
     }
 
   } catch (error) {
@@ -30,11 +32,13 @@ const sign_in_token = createAsyncThunk("sign_in_token", async (data = null, { re
   try {
     let token = LS.get('token')
     let response = await api.post(endpoints.sign_in_token, null, headers(token))
+    let addressesResponse = await api.get(endpoints.get_addresses,headers(LS.get("token")))
     return {
       success: response.data.sucess,
       user: response.data.user,
       cart: response.data.cart,
-      token: token
+      token: token,
+      addresses: addressesResponse.data.addresses
     }
   } catch (error) {
     let newError = parseError({ error })
