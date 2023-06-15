@@ -4,6 +4,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ProductCard } from './ProductCard'
 import { useDispatch, useSelector } from 'react-redux'
 import cartActions from '../../store/user/cart/cartActions'
+import { parsePrice } from '../../utils/handleData'
 
 const {clear_cart} = cartActions
 
@@ -77,10 +78,10 @@ export function Slideover({ open, setOpen }) {
 
                                                     </div>
                                                     <div className='w-full text-start p-4'>
-                                                        Subtotal: ${products.reduce(
+                                                        Subtotal: ${parsePrice(products.reduce(
                                                             (accumulator, currentValue) => accumulator + currentValue?.product_id?.price * currentValue.quantity,
                                                             0
-                                                        )}
+                                                        ))}
                                                     </div>
                                                     <div className='w-full my-4'>
                                                         <button className='bg-success-100 text-success-500 w-full rounded-lg p-2 my-2 hover:bg-success-500 hover:text-white'>Checkout</button>

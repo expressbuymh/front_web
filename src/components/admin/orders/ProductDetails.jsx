@@ -1,3 +1,7 @@
+import { parsePrice } from "../../../utils/handleData"
+
+
+
 export function ProductDetail({ product }) {
     return (
         <>
@@ -10,7 +14,7 @@ export function ProductDetail({ product }) {
                     {product?.quantity}
                 </div>
                 <div className=" text-sm">
-                    ${product.quantity * product.product_id.price}
+                    ${parsePrice(product.quantity * product.product_id.price)}
                 </div>
                 
             </div>
