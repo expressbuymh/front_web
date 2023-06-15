@@ -35,7 +35,7 @@ export function ProductCard({product}){
         console.log(product)
     },[])
     return(
-        <div className="w-full h-[96px] flex flex-row justify-between p-2 border rounded-lg">
+        <div key={actualProduct._id} className="w-full h-[96px] flex flex-row justify-between p-2 border rounded-lg">
             <img src={actualProduct.photo} className="w-20 h-20 object-contain rounded-lg p-1" alt="" />
             <div className="flex flex-col justify-between items-start grow">
             <p className="text-xs text-paragraph-primary font-bold">{actualProduct.name}</p>
