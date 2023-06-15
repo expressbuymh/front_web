@@ -31,9 +31,9 @@ export function ProductDetails () {
           <p className='text-sm'>SKU:{product.ean13}</p>
           <p className='my-5'>{product.description}</p>
           {product.discount_id?.active === true
-          ? <div className='flex w-24 flex-wrap items-center'>
+          ? <div className='grid grid-cols-2 w-32 justify-center'>
             {product.discount_id.active && <p className='w-fit font-medium p-1 '>${parsePrice(parseDiscountPrice(product.price, product.discount_id.percentage))}</p>}
-            {product.discount_id.active && <p className='bg-green-600 rounded-md flex items-center p-1 text-white'>{parseDiscountPercentage(product.discount_id.percentage)}%</p>}
+            {product.discount_id.active && <p className='bg-green-600 rounded-md text-center p-1 text-white'>{parseDiscountPercentage(product.discount_id.percentage)}%</p>}
             <p className='w-fit font-light p-1 mb-2 line-through'>${parsePrice(product.price)}</p>
           </div>
           : <div>

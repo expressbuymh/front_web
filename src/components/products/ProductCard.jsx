@@ -66,9 +66,9 @@ useEffect(() => {
         <p className='w-full font-medium text-sm'>{items.name}</p>
         <p className='w-full text-paragraph-secondary text-sm mb-5'>{items?.subcategory_id?.name}</p>
         {items.discount_id?.active === true
-          ? <div className='flex w-24 flex-wrap items-center'>
+          ? <div className='grid grid-cols-2 w-32 justify-center'>
             {items.discount_id?.active && <p className='w-fit font-medium p-1 '>${parsePrice(parseDiscountPrice(items.price, items.discount_id.percentage))}</p>}
-            {items.discount_id?.active && <p className='bg-green-600 rounded-md flex items-center p-1 text-white'>{parseDiscountPercentage(items.discount_id.percentage)}%</p>}
+            {items.discount_id?.active && <p className='bg-green-600 rounded-md text-center p-1 text-white'>{parseDiscountPercentage(items.discount_id.percentage)}%</p>}
             <p className='w-fit font-light p-1 mb-2 line-through'>${parsePrice(items.price)}</p>
           </div>
           : <div>

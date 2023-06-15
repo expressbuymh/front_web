@@ -14,7 +14,6 @@ export function Home(items,card) {
     }
   },[user])
   return (
-
     <>
     <div className="bg-bg-light flex h-full flex-col justify-center items-center">
       <div className="w-11/12 h-96 min-h-[220px] flex items-center justify-center my-6 ">
@@ -23,7 +22,10 @@ export function Home(items,card) {
       <CardSales/>
       <div className="w-11/12 my-6">
         <p className="font-bold text-paragraph-primary my-4 text-2xl">Featured products</p>
+        <div onClick={()=>navigate("/products")}>
         <ProductsCards/>
+        </div>
+
       </div>
     </div>
     </>

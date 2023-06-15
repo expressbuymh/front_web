@@ -1,5 +1,5 @@
 import { useEffect,useState } from "react"
-import { parseDiscountPercentage, parseDiscountPrice } from "../../utils/handleData"
+import { parseDiscountPercentage, parseDiscountPrice, parsePrice } from "../../utils/handleData"
 import { api, endpoints, headers } from "../../utils/api"
 import { LS } from "../../utils/localStorageUtils"
 import { useNavigate } from "react-router-dom"
@@ -20,13 +20,13 @@ export function ProductsCards(){
             <p className="w-2/3 font-medium">{items.name}</p>
             <p className="w-full text-paragraph-secondary text-sm mb-5">{items.category_id.name}</p>          
               {items.discount_id?.active == true ?
-              <div className="flex w-24 flex-wrap items-center">
-                <p className="w-fit font-medium p-1 ">${parseDiscountPrice(items.price,items.discount_id.percentage)}</p>
-                <p className="bg-green-600 rounded-md flex items-center p-1 text-white">{parseDiscountPercentage(items.discount_id.percentage)}%</p>
-                <p className="w-fit font-light p-1 mb-2 line-through">${items.price}</p>
+              <div className="grid grid-cols-2 w-32 justify-center">
+                <p className="w-fit font-medium p-1 ">${parsePrice(parseDiscountPrice(items.price,items.discount_id.percentage))}</p>
+                <p className="bg-green-600 rounded-md text-center p-1 text-white">{parseDiscountPercentage(items.discount_id.percentage)}%</p>
+                <p className="w-fit font-light p-1 mb-2 line-through">${parsePrice(items.price)}</p>
               </div>
               : <div>
-                 <p className="w-fit font-semibold p-1 my-2">${items.price}</p>
+                 <p className="w-fit font-semibold p-1 my-2">${parsePrice(items.price)}</p>
                  <p className="h-[1.5rem]"></p>
                 </div> }       
           </div>
