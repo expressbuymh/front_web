@@ -12,6 +12,7 @@ export function PaymentSuccess(){
     useEffect(() => {
         console.log(external_reference)
         //api.put("orders/paid/" + external_reference,null,headers(LS.get("token"))).then(res => console.log(res.data)).catch(err => console.log(err))
+
     },[external_reference])
     return(
         <div>{external_reference? external_reference : "no esta"}</div>
