@@ -87,6 +87,7 @@ export function OrderDetails() {
                         <div className="col-span-3 ">Name</div>
                         <div>Quantity</div>
                         <div >Price</div>
+                        
                     </div>
                     {order?.products?.map((item) => <ProductDetail product={item} key={item} />)}
                     <div className="w-full flex flex-row justify-end mt-4">
