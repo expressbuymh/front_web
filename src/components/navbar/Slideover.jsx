@@ -105,7 +105,7 @@ export function Slideover({ open, setOpen }) {
                                                         ))}
                                                     </div>
                                                     <div className='w-full my-4'>
-                                                        <button className='bg-success-100 text-success-500 w-full rounded-lg p-2 my-2 hover:bg-success-500 hover:text-white'>Checkout</button>
+                                                        <button onClick={()=> navigate("/checkout/details")} className='bg-success-100 text-success-500 w-full rounded-lg p-2 my-2 hover:bg-success-500 hover:text-white'>Checkout</button>
                                                     </div>
                                                 </div> :
                                                 <div className='w-full h-full flex flex-col justify-center items-center'>
