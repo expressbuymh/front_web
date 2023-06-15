@@ -7,6 +7,15 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 export const api = axios.create({baseURL: apiUrl})
+               
+
+
+
+
+
+
+
+
 
 export const endpoints = {
   sign_in: "/auth/signin",
