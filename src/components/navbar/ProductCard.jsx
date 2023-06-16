@@ -30,6 +30,7 @@ export function ProductCard({product}){
         }
         dispatch(remove_product({product, cart_id}))
     }
+
     return(
         <div key={product.product_id._id} className="w-full h-[96px] flex flex-row justify-between p-2 border rounded-lg">
             <img src={actualProduct.photo} className="w-20 h-20 object-contain rounded-lg p-1" alt="" />
