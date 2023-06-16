@@ -28,36 +28,26 @@ export function Payment() {
         api.post("paymments", postOrder).then((res) => (window.location.href = res.data.response.body.init_point)).catch(err => console.log(err))
     }
     return (
-        <div className="w-full h-full flex flex-row justify-center items-start p-4">
-            <div className="w-full h-full lg:flex lg:flex-row flex flex-col justify-center items-start gap-2 ">
-                <div className="grow order-2 w-full lg:order-1 border rounded-lg p-4">
-                    <div className="mb-8 text-lg">Order details</div>
-                    <div className="grid grid-cols-5">
-                        <div>
-                            <div className="col-span-3 ">Number</div>
-                            <div>Quantity</div>
-                            <div >Price</div>
+        <div className="flex flex-col w-full h-full items-center">
+                <div className="w-4/6 h-[30%] mt-4 border-x">
+                    <div className="font-bold border-b mb-4">Order details</div>
+                    
+                    <div className="w-full h-5/6 flex flex-col justify-around border-b">
+                        <div className="w-full flex gap-3 border-b">
+                            <p className="font-bold">Nr.Order:</p>
+                            #{order?.n_order}
+                        </div>
+                        <div className="flex-row flex gap-3 border-b">
+                            <p className="font-bold ">Quantity of products:</p>
+                            {order?.products.length}
+                        </div>
+                        <div className="flex-row flex gap-3 ">
+                            <p className="font-bold">Total:</p>
+                             ${parsePrice(order?.total_price)}
                         </div>
                     </div>
-                    <div className="grid grid-cols-5">
-                        <div>
-                            #{order.n_order}
-                        </div>
-                        <div>
-                            Quantity of products: {order.products.length}
-                        </div>
-                        <div className="w-full flex flex-row justify-end mt-4 font-bold">
-                            Total: $ {parsePrice(order?.total_price)}
-                        </div>
-                    </div>
-
-                    <div className="w-full flex flex-row justify-end mt-4">
-                        Subtotal: $ {parsePrice(order?.total_price)}
-                    </div>
-
                 </div>
-            </div>
-            <button onClick={handlePayment} className="w-1/4 bg-primary-600 hover:bg-primary-500 text-white p-2 rounded-lg">Pagar</button>
+            <button onClick={handlePayment} className="w-4/6 bg-primary-600 hover:bg-primary-500 text-white p-2 rounded-lg">Pay</button>
         </div>
     )
 }
