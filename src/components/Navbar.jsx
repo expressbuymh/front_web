@@ -28,7 +28,7 @@ function Navbar() {
           <Bars3Icon className='w-8 h-8'/>
         </button>
         <SlideoverMenu open={open} setOpen={setOpen}/>
-        <h1 onClick={()=>navigate("/")} className='font-black text-primary-600 text-3xl hidden lg:block'>ExBy</h1>
+        <h1 onClick={()=>navigate("/")} className='font-black text-primary-600 text-3xl hidden lg:block'>ExpressBuy</h1>
         {!token && <AuthLinks />}
         {token &&
           <div className='flex flew-row  divide-x-2 items-center'>
