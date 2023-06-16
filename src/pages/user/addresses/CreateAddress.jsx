@@ -2,13 +2,18 @@ import { useDispatch } from "react-redux"
 import { parseDataFromForm } from "../../../utils/handleData"
 import actions from "../../../store/user/address/addressActions"
 import {InputText} from "../../../components/forms/InputText"
+import { useNavigate } from "react-router-dom"
 const {create} = actions
 export function CreateAddress(){
+    const navigate = useNavigate()
     const dispatch =  useDispatch()
     function handleSubmit(e){
         e.preventDefault()
         let {data} = parseDataFromForm(e)
         dispatch(create({data}))
+        setTimeout(() => {
+            navigate("/adresses/me")
+        },1000)
     }
     return(
         <div className="w-full h-full flex flex-col justify-start items-center p-4">

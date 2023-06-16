@@ -7,13 +7,16 @@ import cartActions from '../../store/user/cart/cartActions'
 import { parsePrice } from '../../utils/handleData'
 import { useNavigate } from 'react-router-dom'
 
-const { clear_cart } = cartActions
+const { clear_cart, add_address } = cartActions
 
 export function Slideover({ open, setOpen }) {
-    const { products, cart_id } = useSelector(store => store.user.cart)
+    const { products, cart_id, address } = useSelector(store => store.user.cart)
     const { addresses } = useSelector(store => store.user.data)
     const navigate = useNavigate()
-
+    function handleChange(e){
+        let address_id = e.target.value
+        dispatch(add_address({address_id,cart_id}))
+    }
     const dispatch = useDispatch()
     function handleAddAddress(){
         navigate("/user/profile/adresses/create")
@@ -76,9 +79,9 @@ export function Slideover({ open, setOpen }) {
                                                 {addresses?.length > 0 ?
                                                     <>
                                                         <p className='text-paragraph-primary font-medium mt-2'>Shipment address</p>
-                                                        <select className='w-full border rounded-lg p-2 mt-2'>
+                                                        <select value={address} onChange={handleChange} className='w-full border rounded-lg p-2 mt-2'>
                                                             {addresses.map((address) => {
-                                                                return <option>
+                                                                return <option value={address._id}>
                                                                     {address.name}
                                                                 </option>
                                                             })}

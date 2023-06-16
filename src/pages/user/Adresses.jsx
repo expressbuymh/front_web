@@ -30,7 +30,7 @@ export function Addresses() {
 
   
     return (
-        <div className="w-full h-full flex flex-col">
+        <div className="w-full h-full flex flex-col overflow-y-scroll">
             {addresses?.length > 0 ?
             <div className="flex flex-col justify-center items-center mt-8">
                 <p className='text-paragraph-primary font-medium mt-2'>Your addresses</p>
