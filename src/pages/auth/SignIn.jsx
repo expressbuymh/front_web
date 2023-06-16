@@ -14,7 +14,6 @@ export function SignIn() {
   const { loading, error } = useSelector(store => store.user.data)
   function handleSubmit(e) {
     let { data } = parseDataFromForm(e);
-    console.log(data)
     dispatch(sign_in({ data }))
   }
   return (
