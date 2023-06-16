@@ -6,7 +6,7 @@ import cartActions from './cartActions'
 
 
 const { sign_in, sign_in_token, sign_out } = authActions
-const { set_product, remove_product, clear_cart,add_product, add_address } = cartActions
+const { set_product, remove_product, clear_cart,add_product, add_address, checkout } = cartActions
 
 const inicialState = {
   cart_id: null,
@@ -170,6 +170,18 @@ const reducer = createReducer(
           ...state,
           address: action.payload.address_id
         }
+        return newState
+      }
+    )
+    .addCase(
+      checkout,
+      (state, action ) => {
+        console.log("entre reducer")
+        const newState = {
+          ...state,
+          products: action.payload.success ? [] : state.products
+        }
+        return newState
       }
     )
 )

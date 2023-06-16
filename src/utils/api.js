@@ -33,7 +33,8 @@ export const cart_endpoint = {
   set_product: "carts/addproducts/",
   remove_product: "carts/deleteproduct/",
   clear_cart: "carts/clear/",
-  add_address: "carts/address/"
+  add_address: "carts/address/",
+  checkout: "carts/checkout/"
 }
 
 export function headers(token){

@@ -3,8 +3,10 @@ import { ProductCard } from "../../components/navbar/ProductCard"
 import { parsePrice } from "../../utils/handleData"
 import cartActions from '../../store/user/cart/cartActions'
 import { useNavigate } from "react-router-dom"
+import { api, cart_endpoint, endpoints, headers } from "../../utils/api"
+import { LS } from "../../utils/localStorageUtils"
 
-const { clear_cart, add_address } = cartActions
+const { clear_cart, checkout } = cartActions
 export function CartDetails() {
 
     const dispatch = useDispatch()
@@ -13,13 +15,13 @@ export function CartDetails() {
     const { products, cart_id, address } = useSelector(store => store.user.cart)
     const { addresses } = useSelector(store => store.user.data)
 
-    function handleCheckout(){
-        dispatch()
-    }
+    function handleCheckout() {
+        console.log(cart_endpoint.checkout + cart_id)
+        api.put(cart_endpoint.checkout + cart_id, null, headers(LS.get("token"))).then(res => {
+            navigate("/checkout/payment", { state: res.data.order })
+            dispatch(checkout())
+        })
 
-    function handleChange(e) {
-        let address_id = { address_id: e.target.value }
-        dispatch(add_address({ address_id, cart_id }))
     }
 
     function handleClear() {

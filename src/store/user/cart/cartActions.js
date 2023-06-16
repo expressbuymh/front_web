@@ -1,4 +1,4 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, createAction } from "@reduxjs/toolkit";
 import { api, cart_endpoint, headers } from "../../../utils/api";
 import { LS } from "../../../utils/localStorageUtils";
 
@@ -106,26 +106,14 @@ const add_address = createAsyncThunk("add_address", async ({ address_id, cart_id
     //quantity
 })
 //checkout
-const checkout = createAsyncThunk("checkout", async ({ address_id, cart_id }, { rejectWithValue }) => {
-    {
-        try {
-            console.log(address_id, cart_id)
-            let response = await api.put(cart_endpoint.add_address + cart_id, address_id, headers(LS.get("token")))
-            console.log(response.data)
-            return {
-                address_id: address_id.address_id,
-            }
-        } catch (error) {
-            console.log(error)
-            return rejectWithValue({
-                error
-            })
+const checkout = createAction("checkout",() => {
+    console.log("entre")
+    return{
+        payload: {
+            success: true
         }
-
     }
-    //product_id
-    //quantity
 })
 
-const actions = { set_product, remove_product, clear_cart, add_product, add_address }
+const actions = { set_product, remove_product, clear_cart, add_product, add_address, checkout }
 export default actions
