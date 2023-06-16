@@ -29,7 +29,6 @@ export function ProductCard ({ staticProduct }) {
         product_id,
         quantity
     }
-    console.log(product)
     dispatch(set_product({product, minus: true, cart_id}))
 }
 function handlePlusClick(product_id, quantity){
@@ -37,14 +36,9 @@ function handlePlusClick(product_id, quantity){
         product_id,
         quantity
     }
-    console.log(product)
     dispatch(set_product({product, minus: false, cart_id}))
 }
 
-
-useEffect(() => {
-  console.log(itemsAdd)
-}, [])
 
   useEffect(() => {
     api.get(endpoints.get_products)

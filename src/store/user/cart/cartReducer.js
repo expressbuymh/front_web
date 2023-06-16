@@ -25,7 +25,7 @@ const reducer = createReducer(
           ...state,
           cart_id: action.payload.cart._id,
           products: action.payload.cart.products,
-          address: action.payload.cart.address_id,
+          address: action.payload.cart.address_id? action.payload.cart.address_id._id : null,
           loading: false
         }
         return newState
@@ -58,7 +58,7 @@ const reducer = createReducer(
           ...state,
           cart_id: action.payload.cart._id,
           products: action.payload.cart.products,
-          address: action.payload.cart.address_id,
+          address: action.payload.cart.address_id? action.payload.cart.address_id._id : null,
           loading: false
         }
         return newState
@@ -168,7 +168,7 @@ const reducer = createReducer(
       (state, action ) => {
         const newState = {
           ...state,
-          address: action.payload.address_id 
+          address: action.payload.address_id
         }
       }
     )

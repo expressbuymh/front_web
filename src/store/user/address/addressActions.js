@@ -8,13 +8,11 @@ const create = createAsyncThunk("create", async ({ data }, { rejectWithValue }) 
     try {
         let response = await api.post(endpoints.create_address, data, headers(LS.get("token")));
         toast.success("Saved")
-        console.log(response)
         return {
             address: response.data.address
         }
 
     } catch (error) {
-        console.log(error)
         let { newError } = parseError({ error })
         return rejectWithValue({
             error: newError

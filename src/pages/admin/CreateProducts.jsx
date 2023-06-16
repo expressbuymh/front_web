@@ -14,12 +14,10 @@ export function CreateProducts(){
 
    async function handleSubmit(e){
     const {data} = parseDataFromForm(e)
-    console.log(data)
       try {
         const res = await api.post(`products/`,data,headers(LS.get("token")))
         toast.success("Saved")
       } catch (error) {
-        console.log(error)
         toast.error("Error")
       }
   }

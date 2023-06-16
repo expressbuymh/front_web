@@ -29,19 +29,16 @@ const set_product = createAsyncThunk("set_product", async ({ product, minus, car
 //remove product
 const remove_product = createAsyncThunk("remove_product", async ({ product, cart_id }, { rejectWithValue }) => {
     {
-        
+
         try {
             product = {
                 product_id: product.product_id
             }
-            console.log(product)
             let response = await api.post(cart_endpoint.remove_product + cart_id, product, headers(LS.get("token")))
-            console.log(response.data)
             return {
                 product_id: product.product_id
             }
         } catch (error) {
-            console.log(error)
             return rejectWithValue({
                 error
             })
@@ -52,17 +49,15 @@ const remove_product = createAsyncThunk("remove_product", async ({ product, cart
     //quantity
 })
 //clear
-const clear_cart = createAsyncThunk("clear_product", async ({  cart_id }, { rejectWithValue }) => {
+const clear_cart = createAsyncThunk("clear_product", async ({ cart_id }, { rejectWithValue }) => {
     {
-        
+
         try {
-            let response = await api.put(cart_endpoint.clear_cart + cart_id, null,headers(LS.get("token")))
-            console.log(response.data)
+            let response = await api.put(cart_endpoint.clear_cart + cart_id, null, headers(LS.get("token")))
             return {
                 success: true
             }
         } catch (error) {
-            console.log(error)
             return rejectWithValue({
                 error
             })
@@ -72,15 +67,14 @@ const clear_cart = createAsyncThunk("clear_product", async ({  cart_id }, { reje
     //product_id
     //quantity
 })
-const add_product = createAsyncThunk("add_product", async ({ product_db,data_product, cart_id }, { rejectWithValue }) => {
+const add_product = createAsyncThunk("add_product", async ({ product_db, data_product, cart_id }, { rejectWithValue }) => {
     {
         try {
-            console.log(product_db)
             let response = await api.post(cart_endpoint.set_product + cart_id, product_db, headers(LS.get("token")))
             return {
                 product_id: product_db.product_id,
                 quantity: product_db.quantity,
-                product_data:data_product,
+                product_data: data_product,
             }
         } catch (error) {
             return rejectWithValue({
@@ -95,10 +89,11 @@ const add_product = createAsyncThunk("add_product", async ({ product_db,data_pro
 const add_address = createAsyncThunk("add_address", async ({ address_id, cart_id }, { rejectWithValue }) => {
     {
         try {
-            console.log(address_id, cart_id)
-            let response = await api.post(cart_endpoint.add_address + cart_id, address_id, headers(LS.get("token")))
+            console.log(address_id)
+            let response = await api.put(cart_endpoint.add_address + cart_id, address_id, headers(LS.get("token")))
+            console.log(response.data)
             return {
-                address_id:address_id,
+                address_id: address_id.address_id,
             }
         } catch (error) {
             return rejectWithValue({
@@ -111,6 +106,26 @@ const add_address = createAsyncThunk("add_address", async ({ address_id, cart_id
     //quantity
 })
 //checkout
+const checkout = createAsyncThunk("checkout", async ({ address_id, cart_id }, { rejectWithValue }) => {
+    {
+        try {
+            console.log(address_id, cart_id)
+            let response = await api.put(cart_endpoint.add_address + cart_id, address_id, headers(LS.get("token")))
+            console.log(response.data)
+            return {
+                address_id: address_id.address_id,
+            }
+        } catch (error) {
+            console.log(error)
+            return rejectWithValue({
+                error
+            })
+        }
 
-const actions = { set_product, remove_product, clear_cart,add_product, add_address }
+    }
+    //product_id
+    //quantity
+})
+
+const actions = { set_product, remove_product, clear_cart, add_product, add_address }
 export default actions

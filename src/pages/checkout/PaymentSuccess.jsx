@@ -10,7 +10,6 @@ export function PaymentSuccess(){
         setExternal_reference(searchParams.get("external_reference"))
     },[searchParams])
     useEffect(() => {
-        console.log(external_reference)
         api.put("orders/paid/" + external_reference,null).then(res => console.log(res.data)).catch(err => console.log(err))
 
     },[external_reference])
