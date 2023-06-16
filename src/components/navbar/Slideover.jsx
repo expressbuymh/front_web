@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import { Fragment, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon, PlusCircleIcon } from '@heroicons/react/24/outline'
 import { ProductCard } from './ProductCard'
@@ -6,17 +6,31 @@ import { useDispatch, useSelector } from 'react-redux'
 import cartActions from '../../store/user/cart/cartActions'
 import { parsePrice } from '../../utils/handleData'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-hot-toast'
 
-const { clear_cart } = cartActions
+const { clear_cart, add_address } = cartActions
 
 export function Slideover({ open, setOpen }) {
-    const { products, cart_id } = useSelector(store => store.user.cart)
+    const { products, cart_id, address } = useSelector(store => store.user.cart)
     const { addresses } = useSelector(store => store.user.data)
     const navigate = useNavigate()
+    function handleChange(e) {
+        console.log("entre")
+        let address_id = { address_id: e.target.value }
 
+        dispatch(add_address({ address_id, cart_id }))
+    }
+    function handleCheckout() {
+        if (address) {
+            navigate("/checkout/details")
+        } else {
+            toast.error("you have to set a address of shipment")
+        }
+
+    }
     const dispatch = useDispatch()
-    function handleAddAddress(){
-        navigate("/user/profile/adresses/create")
+    function handleAddAddress() {
+        navigate("/adresses/create")
     }
     function handleClear() {
         dispatch(clear_cart({ cart_id }))
@@ -76,9 +90,10 @@ export function Slideover({ open, setOpen }) {
                                                 {addresses?.length > 0 ?
                                                     <>
                                                         <p className='text-paragraph-primary font-medium mt-2'>Shipment address</p>
-                                                        <select className='w-full border rounded-lg p-2 mt-2'>
+                                                        <select value={address} onChange={handleChange} className='w-full border rounded-lg p-2 mt-2'>
+                                                            <option value="">No one</option>
                                                             {addresses.map((address) => {
-                                                                return <option>
+                                                                return <option key={address._id} selected={address._id === address} value={address._id}>
                                                                     {address.name}
                                                                 </option>
                                                             })}
@@ -86,7 +101,7 @@ export function Slideover({ open, setOpen }) {
                                                         </select>
                                                     </>
 
-                                                    : <button onClick={handleAddAddress} className='w-full border flex flex-row gap-2 items-center justify-center bg-bg-medium text-paragraph-secondary p-2 rounded-lg my-2'>Create address <PlusCircleIcon className='w-6 h-6 stroke-paragraph-secondary'/></button>}
+                                                    : <button onClick={handleAddAddress} className='w-full border flex flex-row gap-2 items-center justify-center bg-bg-medium text-paragraph-secondary p-2 rounded-lg my-2'>Create address <PlusCircleIcon className='w-6 h-6 stroke-paragraph-secondary' /></button>}
                                             </Dialog.Title>
 
                                         </div>
@@ -105,7 +120,7 @@ export function Slideover({ open, setOpen }) {
                                                         ))}
                                                     </div>
                                                     <div className='w-full my-4'>
-                                                        <button onClick={()=> navigate("/checkout/details")} className='bg-success-100 text-success-500 w-full rounded-lg p-2 my-2 hover:bg-success-500 hover:text-white'>Checkout</button>
+                                                        <button onClick={handleCheckout} className='bg-success-100 text-success-500 w-full rounded-lg p-2 my-2 hover:bg-success-500 hover:text-white'>Checkout</button>
                                                     </div>
                                                 </div> :
                                                 <div className='w-full h-full flex flex-col justify-center items-center'>

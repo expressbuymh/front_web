@@ -22,8 +22,6 @@ export function Products() {
     e.preventDefault()
     const { data } = parseDataFromForm(e)
     setSearchParams(data);
-
-    console.log(searchParams)
   }
   return (
     <div className='w-full h-full flex flex-col justify-center items-start p-4 lg:flex-row'>

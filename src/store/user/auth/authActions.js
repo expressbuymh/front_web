@@ -11,7 +11,6 @@ const sign_in = createAsyncThunk("sign_in", async ({ data }, { rejectWithValue }
     let response = await api.post(endpoints.sign_in, data);
     LS.add('token', response.data.token)
     let addressesResponse = await api.get(endpoints.get_addresses,headers(LS.get("token")))
-    console.log(response.data.cart)
     return {
       success: response.data.sucess,
       user: response.data.user,
@@ -21,7 +20,6 @@ const sign_in = createAsyncThunk("sign_in", async ({ data }, { rejectWithValue }
     }
 
   } catch (error) {
-    console.log(error)
     let { newError } = parseError({ error })
     return rejectWithValue({
       error: newError

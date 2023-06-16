@@ -19,7 +19,6 @@ export default function FormLogin () {
       email,
       password
     }
-    console.log(data)
     dispatch(actions.signin(data))
     navigate('/')
   }

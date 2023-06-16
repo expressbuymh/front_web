@@ -12,7 +12,6 @@ const get_menu = createAsyncThunk("get_menu", async (data = null, { rejectWithVa
             subcategories: response.data.subcategories,
         }
     } catch (error) {
-        console.log(error)
         let { newError } = parseError({ error })
         return rejectWithValue({
             error: newError

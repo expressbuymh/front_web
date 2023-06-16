@@ -257,7 +257,8 @@ const reducer = createReducer(
       create.fulfilled,
       (state, action) => {
         const newState = {
-          addresses: [state.addresses, action.payload.address]
+          ...state,
+          addresses: [...state.addresses, action.payload.address]
         }
         return newState
       }

@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 export function Profile() {
     const navigate = useNavigate()
     const { user, addresses } = useSelector(store => store.user.data)
-    console.log(addresses?._id)
     return (
         <div className="w-[89%]  h-full flex lg:flex-row lg:justify-center lg:items-start md:flex-row flex-col justify-center items-center">
             <div className=" h-1/4 w-32 border mt-2 mx-4 rounded-full flex items-center justify-center">

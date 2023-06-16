@@ -28,15 +28,15 @@ export function EditsProduct() {
       .catch(err => console.log(err))
   }, [id])
 
-  async function handleSubmit(e) {
-    const { data } = parseDataFromForm(e)
-    try {
-      const res = await api.put(`products/${id}`, data, headers(LS.get("token")))
-      toast.success("Saved")
-    } catch (error) {
-      console.log(error)
-      toast.error("Error")
-    }
+
+  async function handleSubmit(e){
+    const {data} = parseDataFromForm(e)
+      try {
+        const res = await  api.put(`products/${id}`,data,headers(LS.get("token")))
+        toast.success("Saved")
+      } catch (error) {
+        toast.error("Error")
+      }
   }
 
   return (
