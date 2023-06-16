@@ -15,7 +15,7 @@ export function SlideoverMenu({ open, setOpen }) {
     function handleClick(category_id, subcategory_id) {
         navigate({
             pathname: '/products',
-            search: `?category_id=${category_id}&subcategory_id=${subcategory_id}`
+            search: `?category_id=${category_id}&subcategory_id=${subcategory_id}&page=1`
         })
     }
     return (
