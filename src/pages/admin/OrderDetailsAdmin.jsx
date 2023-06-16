@@ -89,7 +89,7 @@ export function OrderDetailsAdmin() {
                         <div>Quantity</div>
                         <div >Price</div>
                     </div>
-                    {order?.products?.map((item) => <ProductDetail product={item} key={item}  />)}
+                    {order?.products?.map((item) => <ProductDetail product={item} key={item} />)}
                     <div className="w-full flex flex-row justify-end mt-4">
                         Subtotal: $ {parsePrice(order?.total_price)}
                     </div>

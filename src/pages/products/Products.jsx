@@ -91,9 +91,7 @@ export function Products() {
         </div>
         <div className='grow w-full grid grid-cols-1 md:grid-col-2 lg:grid-cols-4 gap-2 p-2 '>
           {products?.map((item) => <ProductCard staticProduct={item} key={item._id} />)}
-
         </div>
-
       </div>
       <div className='w-full flex flex-row justify-center items-center gap-6 my-4'>
         <button onClick={handleDownPage} className='bg-primary-500 text-white p-2 rounded-lg'>Prev page</button>

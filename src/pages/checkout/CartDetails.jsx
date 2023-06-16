@@ -15,6 +15,7 @@ export function CartDetails() {
     const { products, cart_id, address } = useSelector(store => store.user.cart)
     const { addresses } = useSelector(store => store.user.data)
 
+
     function handleCheckout() {
         console.log(cart_endpoint.checkout + cart_id)
         api.put(cart_endpoint.checkout + cart_id, null, headers(LS.get("token"))).then(res => {

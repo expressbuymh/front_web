@@ -9,7 +9,6 @@ export function ProductsAdmin() {
   const location = useLocation()
   const [products, setProducts] = useState([])
   const [totalPages, setTotalPages] = useState(0)
-
   useEffect(() => {
     console.log("entre")
     api.get(endpoints.get_products + location.search + "&all=true")
@@ -40,8 +39,7 @@ export function ProductsAdmin() {
   }
   return (
     <div className='w-full flex flex-col  justify-center gap-4 p-4 mb-24'>
-      <button onClick={createProduct} className='w-full bg-primary-700 rounded-lg text-white h-10 '>Create new product</button>
-      
+      <button onClick={createProduct} className='w-full bg-primary-700 rounded-lg text-white h-10 '>Create new product</button>      
       {products?.map((item) => <AdminProducts staticItems={item} key={item._id} />)}
       <div className='w-full flex flex-row justify-center items-center gap-6 my-4'>
         <button onClick={handleDownPage} className='bg-primary-500 text-white p-2 rounded-lg'>Prev page</button>
