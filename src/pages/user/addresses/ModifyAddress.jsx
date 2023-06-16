@@ -25,18 +25,6 @@ export function ModifyAddress() {
             console.log(error)
         }
     }
-     async function handleDelete() {
-        try {
-           
-            let { data } = parseDataFromForm()
-            const res = await api.delete(`addresses/${address_id}`, data, headers(LS.get("token")))
-            console.log(res)
-            toast.success("Saved")
-            navigate("/adresses/me")
-        } catch (error) {
-            console.log(error)
-        }
-    } 
     return (
         <div className="w-full h-full flex flex-col justify-start items-center p-4">
             <h1 className="text-paragraph-primary font-medium">Modify Address</h1>
@@ -49,10 +37,6 @@ export function ModifyAddress() {
                 <InputText name={"zip_code"} defaultValue={location.state?.zip_code} label={"Zip code"} error={null} type={"number"} />
                 <InputText name={"telephone"} defaultValue={location.state?.telephone}  label={"Telephone number"} error={null} type={"number"} />
                 <button className="w-1/2 bg-primary-500 text-white rounded-lg p-2 my-2">Edit</button>
-                
-            </form>
-            <form onClick={handleDelete}>
-            <button  className="w-1/2 bg-primary-500 text-white rounded-lg p-2 my-2">Delete</button>
             </form>
         </div>
     )
