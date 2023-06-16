@@ -15,7 +15,6 @@ export function ProductCard({product}){
             product_id,
             quantity
         }
-        console.log(product)
         dispatch(set_product({product, minus: true, cart_id}))
     }
     function handleAddClick(product_id, quantity){
@@ -23,22 +22,16 @@ export function ProductCard({product}){
             product_id,
             quantity
         }
-        console.log(product)
         dispatch(set_product({product, minus: false, cart_id}))
     }
     function handleRemove(product_id){
-        console.log(product_id)
         let product = {
             product_id
         }
-        console.log(product)
         dispatch(remove_product({product, cart_id}))
     }
-    useEffect(() => {
-        console.log(actualProduct)
-      }, [])
     return(
-        <div key={actualProduct._id} className="w-full h-[96px] flex flex-row justify-between p-2 border rounded-lg">
+        <div key={product.product_id._id} className="w-full h-[96px] flex flex-row justify-between p-2 border rounded-lg">
             <img src={actualProduct.photo} className="w-20 h-20 object-contain rounded-lg p-1" alt="" />
             <div className="flex flex-col justify-between items-start grow">
             <p className="text-xs text-paragraph-primary font-bold">{actualProduct.name}</p>

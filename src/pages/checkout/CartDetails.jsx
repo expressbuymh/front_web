@@ -4,14 +4,24 @@ import { parsePrice } from "../../utils/handleData"
 import cartActions from '../../store/user/cart/cartActions'
 import { useNavigate } from "react-router-dom"
 
-const { clear_cart } = cartActions
+const { clear_cart, add_address } = cartActions
 export function CartDetails() {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const { products, cart_id } = useSelector(store => store.user.cart)
+
+    const { products, cart_id, address } = useSelector(store => store.user.cart)
     const { addresses } = useSelector(store => store.user.data)
-   
+
+    function handleCheckout(){
+        dispatch()
+    }
+
+    function handleChange(e) {
+        let address_id = { address_id: e.target.value }
+        dispatch(add_address({ address_id, cart_id }))
+    }
+
     function handleClear() {
         dispatch(clear_cart({ cart_id }))
     }
@@ -20,14 +30,15 @@ export function CartDetails() {
         <>
             <div className="w-full flex lg:flex-row flex-col justify-center">
                 <div className="lg:w-2/12 lg:justify-start w-11/12 flex flex-col justify-center mx-4">
-                    <p className=' font-semibold mt-4 text-primary-700 '>Shipment address</p>
-                    <select className='w-full border-y rounded-lg p-2 mt-2'>
+                    {/* <p className=' font-semibold mt-4 text-primary-700 '>Shipment address</p> */}
+                    {/* <select defaultValue={address} onChange={handleChange} className='w-full border rounded-lg p-2 mt-2'>
                         {addresses?.map((address) => {
-                            return <option>
+                            return <option key={address._id} selected={address._id === address} value={address._id}>
                                 {address.name}
                             </option>
                         })}
-                    </select>
+
+                    </select> */}
                 </div>
 
                 <div className="lg:w-1/2 w-11/12 mt-4 mx-4 min-h-[80vh]">
@@ -37,13 +48,13 @@ export function CartDetails() {
                                 {products?.map((product) => <ProductCard product={product} key={product._id} />)}
                             </div>
                             <div className='w-full text-start p-4'>
-                             <p className="font-semibold">Subtotal: ${parsePrice(products.reduce(
+                                <p className="font-semibold">Subtotal: ${parsePrice(products.reduce(
                                     (accumulator, currentValue) => accumulator + currentValue?.product_id?.price * currentValue.quantity,
                                     0
-                                ))}</p>   
+                                ))}</p>
                             </div>
                             <div className='w-full flex flex-row justify-between'>
-                                <button className='bg-success-100 text-success-500 w-1/3 rounded-lg p-2 my-2 hover:bg-success-500 hover:text-white'>Checkout</button>
+                                <button onClick={handleCheckout} className='bg-success-100 text-success-500 w-1/3 rounded-lg p-2 my-2 hover:bg-success-500 hover:text-white'>Checkout</button>
                                 <button onClick={handleClear} className='bg-error-100 text-error-500 w-1/3 rounded-lg p-2 my-2 hover:bg-error-500 hover:text-white'>Empty cart</button>
                             </div>
                         </div> :

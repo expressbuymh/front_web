@@ -34,7 +34,6 @@ export function EditsProduct() {
         const res = await  api.put(`products/${id}`,data,headers(LS.get("token")))
         toast.success("Saved")
       } catch (error) {
-        console.log(error)
         toast.error("Error")
       }
   }
