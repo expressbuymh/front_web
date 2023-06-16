@@ -37,6 +37,7 @@ export function ModifyAddress() {
                 <InputText name={"zip_code"} defaultValue={location.state?.zip_code} label={"Zip code"} error={null} type={"number"} />
                 <InputText name={"telephone"} defaultValue={location.state?.telephone}  label={"Telephone number"} error={null} type={"number"} />
                 <button className="w-1/2 bg-primary-500 text-white rounded-lg p-2 my-2">Edit</button>
+
             </form>
         </div>
     )

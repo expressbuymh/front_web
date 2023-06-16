@@ -1,5 +1,5 @@
-export function Loading(){
-    return(
+export function Loading() {
+    return (
         <p>Loading</p>
     )
 }

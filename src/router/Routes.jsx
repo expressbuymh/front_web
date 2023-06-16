@@ -50,8 +50,8 @@ export function Routes() {
         element={
           <MainLayout>
             <Home />
-            <div className='hidden lg:block'><ChatBot/></div>
-            
+            <div className='hidden lg:block'><ChatBot /></div>
+
           </MainLayout >
         } />
       <Route
@@ -116,7 +116,7 @@ export function Routes() {
         path='/payment/success'
         element={
           <MainLayout>
-            <PaymentSuccess/>
+            <PaymentSuccess />
           </MainLayout>
         }
       />
@@ -144,36 +144,36 @@ export function Routes() {
           </MainLayout>
         }
       />
-      
-        <Route path='adresses/create' element={
+
+      <Route path='adresses/create' element={
         <MainLayout>
           <CreateAddress />
         </MainLayout>
-        } />
-        <Route path='adresses/me' element={
+      } />
+      <Route path='adresses/me' element={
         <MainLayout>
           <Addresses />
         </MainLayout>
-        } />
-        <Route path='modify/:address_id' element={
+      } />
+      <Route path='modify/:address_id' element={
         <MainLayout>
           <ModifyAddress />
         </MainLayout>
-        } />
-        <Route path='delete/:address_id' element={
+      } />
+      <Route path='delete/:address_id' element={
         <MainLayout>
           <DeleteAddress />
         </MainLayout>
-        } />
-      
-      
+      } />
+
+
       <Route
         path='/admin'
         element={
           <AdminLayout />
         }>
-       
-        <Route index element={<HomeAdmin/>}/>
+
+        <Route index element={<HomeAdmin />} />
         <Route path='products' element={<ProductsAdmin />} />
         <Route path='products/:id' element={<EditsProduct />} />
         <Route path='products/create' element={<  CreateProducts />} />

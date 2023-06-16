@@ -10,25 +10,25 @@ import { Profile } from "./Profile"
 
 
 export function Addresses() {
-    
-    const [addresses,setAddresses]= useState([])
-    const navigate = useNavigate()
-   
 
-    useEffect(()=>{
-        api.get(endpoints.get_addresses,headers(LS.get("token")))
-        .then(res => {
-            setAddresses(res.data.addresses) 
-            
-          })
-        .catch(err => console.log(err))
+    const [addresses, setAddresses] = useState([])
+    const navigate = useNavigate()
+
+
+    useEffect(() => {
+        api.get(endpoints.get_addresses, headers(LS.get("token")))
+            .then(res => {
+                setAddresses(res.data.addresses)
+
+            })
+            .catch(err => console.log(err))
     }, [])
 
-    function editId(id,address) {
-        navigate(`/modify/${id}`,{state: address})
-      }
+    function editId(id, address) {
+        navigate(`/modify/${id}`, { state: address })
+    }
 
-  
+
     return (
         <div className="w-full h-full flex flex-col overflow-y-scroll">
             {addresses?.length > 0 ?
@@ -61,6 +61,6 @@ export function Addresses() {
                     <button onClick={()=>navigate("/adresses/create")} className="text-white bg-primary-700 h-12 w-40 rounded-lg mt-2">Add new address</button>
                 </div>
             </div>
-            
+
     )
 }
