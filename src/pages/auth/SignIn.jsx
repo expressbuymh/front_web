@@ -20,7 +20,7 @@ export function SignIn() {
   return (
     <div className="w-screen h-screen flex flex-col justify-center items-center bg-bg-light">
       <div className="w-11/12 lg:w-1/2 flex flex-col justify-center items-center gap-6">
-        <h1 className='font-black text-primary-600 text-3xl'>ExBy</h1>
+        <h1 className='font-black text-primary-600 text-3xl'>Express Buy</h1>
         <h1 className="text-paragraph-primary font-bold text-2xl">Sign in to your account</h1>
         <form onSubmit={handleSubmit} className="w-full flex flex-col justify-center items-center gap-3">
           <InputText name="email" label="Email address" error={error?.sign_in?.email} type={"email"} />
