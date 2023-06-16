@@ -32,8 +32,8 @@ export function Addresses() {
     return (
         <div className="w-full h-full flex flex-col overflow-y-scroll">
             {addresses?.length > 0 ?
-            <div className="flex flex-col justify-center items-center mt-8">
-                <p className='text-paragraph-primary font-medium mt-2'>Your addresses</p>
+            <div className="flex flex-col justify-center items-center mt-4">
+                <p className='font-bold mt-2'>Your addresses</p>
                 <div className='w-11/12 flex flex-col justify-center items-center  border rounded-lg'>
                     {addresses?.map((address) => {
                         return <div className="h-32 w-10/12 grid grid-cols-4">
@@ -49,15 +49,17 @@ export function Addresses() {
                                 <p>State:</p>
                                 <p>{address?.state}</p>
                             </div>
-                            <button onClick={()=>editId(address?._id,address)} className="text-primary-700 flex  items-center justify-start">Modify</button>
+                            <button onClick={()=>editId(address?._id,address)} className="text-primary-700 font-semibold flex  items-center justify-start">Modify</button>
                         </div>
                     })}
                 </div>
             </div>
-            :   <button /* onClick={handleAddAddress} */ className='w-full border flex flex-row gap-2 items-center justify-center bg-bg-medium text-paragraph-secondary p-2 rounded-lg my-2'>Create address 
+            :   <button  className='w-full border flex flex-row gap-2 items-center justify-center bg-bg-medium text-paragraph-secondary p-2 rounded-lg my-2'>Create address 
                     <PlusCircleIcon className='w-6 h-6 stroke-paragraph-secondary' />
                 </button>}
-                <button onClick={()=>navigate("/adresses/create")}>Create</button>
+                <div className="w-9/12 flex items-center justify-end">
+                    <button onClick={()=>navigate("/adresses/create")} className="text-white bg-primary-700 h-12 w-40 rounded-lg mt-2">Add new address</button>
+                </div>
             </div>
             
     )
