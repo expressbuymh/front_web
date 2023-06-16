@@ -9,14 +9,6 @@ if (process.env.NODE_ENV === 'production') {
 export const api = axios.create({baseURL: apiUrl})
                
 
-
-
-
-
-
-
-
-
 export const endpoints = {
   sign_in: "/auth/signin",
   sign_up: "/auth/signup",
@@ -27,7 +19,8 @@ export const endpoints = {
   get_discounts: "products/discounts",
   get_orders: "orders/me",
   get_addresses: "addresses/me",
-  create_address: "addresses"
+  create_address: "addresses",
+  update_address:"addresses/:id"
 }
 
 export const adminEnpoints =  {

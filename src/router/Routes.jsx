@@ -144,18 +144,29 @@ export function Routes() {
           </MainLayout>
         }
       />
-      <Route
-        path='/user/profile/adresses'
-        element={
-          <MainLayout>
-            <Addresses />
-          </MainLayout>
-        }
-      >
-        <Route path='create' element={<CreateAddress />} />
-        <Route path='modify/:address_id' element={<ModifyAddress />} />
-        <Route path='delete/:address_id' element={<DeleteAddress />} />
-      </Route>
+      
+        <Route path='adresses/create' element={
+        <MainLayout>
+          <CreateAddress />
+        </MainLayout>
+        } />
+        <Route path='adresses/me' element={
+        <MainLayout>
+          <Addresses />
+        </MainLayout>
+        } />
+        <Route path='modify/:address_id' element={
+        <MainLayout>
+          <ModifyAddress />
+        </MainLayout>
+        } />
+        <Route path='delete/:address_id' element={
+        <MainLayout>
+          <DeleteAddress />
+        </MainLayout>
+        } />
+      
+      
       <Route
         path='/admin'
         element={
