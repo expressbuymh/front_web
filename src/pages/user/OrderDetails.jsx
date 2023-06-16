@@ -69,6 +69,26 @@ export function OrderDetails() {
         })
     }
 
+    function handleCancel() {
+        api.put("/orders/cancel/" + order._id, null, headers(LS.get("token"))).then(
+            res => setOrder((state) => {
+                return {
+                    ...state,
+                    status: "cancel"
+                }
+            }).catch(console.log(error))
+        )
+    }
+    function handlePayment() {
+        let postOrder = {
+            order_id: order._id,
+            id: order._id,
+            description: "order payment",
+            quantity: 1,
+            unit_price: order.total_price
+        }
+        api.post("paymments", postOrder).then((res) => (window.location.href = res.data.response.body.init_point)).catch(err => console.log(err))
+    }
 
     return (
         <div className="w-full h-full p-4">
@@ -77,6 +97,13 @@ export function OrderDetails() {
                 <div className="w-full font-medium flex flex-col justify-start items-start my-4">
                     <p className="text-paragraph-secondary font-normal text-sm ">No. order #{order?.n_order}</p>
                     <p className="text-paragraph-primary font-medium">{order?.user_id?.name}{order?.user_id?.last_name}</p>
+                </div>
+                <div>
+                    {order?.status === "pending" &&
+                        <div className="flex flex-row justify-between gap-4">
+                            <button onClick={handlePayment} className="w-[150px] bg-primary-600 text-white p-2 rounded-lg hover:bg-primary-500">Pay</button>
+                            <button onClick={handleCancel} className="w-[150px] bg-error-100 text-error-500 p-2 rounded-lg hover:bg-error-500 hover:text-white">Cancel</button>
+                        </div>}
                 </div>
             </div>
 
