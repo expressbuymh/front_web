@@ -11,7 +11,7 @@ export function CartDetails() {
     const navigate = useNavigate()
     const { products, cart_id } = useSelector(store => store.user.cart)
     const { addresses } = useSelector(store => store.user.data)
-   
+
     function handleClear() {
         dispatch(clear_cart({ cart_id }))
     }
@@ -37,10 +37,10 @@ export function CartDetails() {
                                 {products?.map((product) => <ProductCard product={product} key={product._id} />)}
                             </div>
                             <div className='w-full text-start p-4'>
-                             <p className="font-semibold">Subtotal: ${parsePrice(products.reduce(
+                                <p className="font-semibold">Subtotal: ${parsePrice(products.reduce(
                                     (accumulator, currentValue) => accumulator + currentValue?.product_id?.price * currentValue.quantity,
                                     0
-                                ))}</p>   
+                                ))}</p>
                             </div>
                             <div className='w-full flex flex-row justify-between'>
                                 <button className='bg-success-100 text-success-500 w-1/3 rounded-lg p-2 my-2 hover:bg-success-500 hover:text-white'>Checkout</button>

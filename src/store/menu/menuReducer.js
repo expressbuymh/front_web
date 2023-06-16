@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit'
 import menuActions from './menuActions'
 
-const {get_menu} = menuActions
+const { get_menu } = menuActions
 
 const inicialState = {
   departments: null,
@@ -19,7 +19,7 @@ const reducer = createReducer(
       (state, action) => {
         const newState = {
           ...state,
-          departments : action.payload.departments,
+          departments: action.payload.departments,
           categories: action.payload.categories,
           subcategories: action.payload.subcategories,
           loading: false
@@ -32,7 +32,7 @@ const reducer = createReducer(
       (state, action) => {
         const newState = {
           ...state,
-           loading : true
+          loading: true
         }
         return newState
       }

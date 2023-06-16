@@ -1,6 +1,6 @@
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import { useSelector } from "react-redux";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -9,9 +9,9 @@ export function Profile() {
     const { user, addresses } = useSelector(store => store.user.data)
     console.log(addresses?._id)
     return (
-        <div className="w-full h-full flex lg:flex-row lg:justify-center lg:items-start md:flex-row flex-col justify-center items-center">
-            <div className=" h-1/4 w-44 border mt-2 mx-4 rounded-full flex items-center justify-center">
-                <img className="object-contain rounded-full" src={user?.photo} alt="" />
+        <div className="w-[89%]  h-full flex lg:flex-row lg:justify-center lg:items-start md:flex-row flex-col justify-center items-center">
+            <div className=" h-1/4 w-32 border mt-2 mx-4 rounded-full flex items-center justify-center">
+                <img className="rounded-full h-32 w-32" src={user?.photo} alt="" />
             </div>
             <div className="flex lg:w-3/5  w-11/12 flex-col gap-8">
                 <p className="font-bold mt-7">Profile</p>
@@ -42,7 +42,7 @@ export function Profile() {
                         </select>
                     </div>
                     : <button /* onClick={handleAddAddress} */ className='w-full border flex flex-row gap-2 items-center justify-center bg-bg-medium text-paragraph-secondary p-2 rounded-lg my-2'>Create address <PlusCircleIcon className='w-6 h-6 stroke-paragraph-secondary' /></button>}
-                <div className="mt-4 grid grid-cols-3">
+                <div className="mt-4 mb-4 grid grid-cols-3">
                     <button onClick={() => navigate("/")} className=" mr-2 bg-primary-700 rounded-lg h-8 font-semibold text-white">Home</button>
                     <button onClick={() => navigate("/user/orders")} className="mx-2 bg-primary-700 rounded-lg h-8 font-semibold text-white">My orders</button>
                     <button onClick={() => navigate("/adresses/me")} className="mr-2 bg-primary-700 rounded-lg h-8 font-semibold text-white">My addresses</button>

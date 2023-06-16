@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { api, endpoints} from "../../utils/api";
+import { api, endpoints } from "../../utils/api";
 import { parseError } from "../../utils/handleData";
 
 const get_menu = createAsyncThunk("get_menu", async (data = null, { rejectWithValue }) => {
     try {
-       
+
         let response = await api.get(endpoints.get_menu);
         return {
             departments: response.data.departments,
@@ -20,5 +20,5 @@ const get_menu = createAsyncThunk("get_menu", async (data = null, { rejectWithVa
     }
 })
 
-const actions = {get_menu}
+const actions = { get_menu }
 export default actions

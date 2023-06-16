@@ -6,16 +6,16 @@ import { LS } from "../utils/localStorageUtils";
 
 export function NotAuthenticatedRoute({ children }) {
     let tokenStorage = LS.get('token');
-    let {token}= useSelector(store => store.user.data)
+    let { token } = useSelector(store => store.user.data)
     console.log(token)
     const [loading, setLoading] = useState(tokenStorage ? true : false)
     useEffect(() => {
-        if(token){
+        if (token) {
             setLoading(false)
         }
-    },[token])
+    }, [token])
     if (loading) {
-        return <Loading/>
+        return <Loading />
     }
     if (token && tokenStorage) {
         return <Navigate to={"/"} replace={true} />

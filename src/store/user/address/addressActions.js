@@ -19,5 +19,5 @@ const create = createAsyncThunk("create", async ({ data }, { rejectWithValue }) 
     }
 })
 
-const actions = {create}
+const actions = { create }
 export default actions
